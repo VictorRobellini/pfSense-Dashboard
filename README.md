@@ -1,3 +1,31 @@
+## What's Monitored
+- Active Users
+- Uptime
+- CPU Load total
+- Disk Utilization
+- Memory Utilization
+- CPU Utilization per core (Single Graph)
+- Ram Utilization time graph
+- Load Average
+- Load Average Graph
+- CPU and ACPI Temperature Sensors
+- pfBlocker IP Stats
+- pfBlocker DNS Stats
+- Gateway Response time - dpinger
+- List of interfaces with IP, MAC and Status
+- WAN Statistics - Traffic & Throughput (Identified by dashboard variable)
+- LAN Statistics - Traffic & Throughput (Identified by dashboard variable)
+
+## Configuration
+The Config for the dashboard relies on the variables defined within Grafana.  When importing the dashboard, make sure to select your datasource.
+
+Dashboard Settings -> Variables
+
+WAN - $WAN is a static variable defined so that a separate dashboard panel can be created for WAN interfaces.  Use a comma-separated list for multiple WAN interfaces.
+
+LAN_Interfaces - $LAN_Interfaces uses a regex to remove any interfaces you don't want to be grouped as LAN.  I have my WAN adapter and igb2 that hosts multiple vlans and nothing else.  The filtering happens in the "Regex" field.  I use a negative lookahead regex to match the interfaces I want to be excluded.  It should be pretty easy to understand what you need to do here.
+After writing this up, I realize I need to change this variable name, it's just not going to happen right now.
+
 ### Running on
 
     Grafana 6.7.1
@@ -24,7 +52,6 @@ What I didn't do and need help with:
 
 - Include IP and ping methods from [/u/seb6596](https://www.reddit.com/u/seb6596 "/u/seb6596") when they are back online.
 - Make it pretty. I've never been good at this part
-- Get the pfBlocker (IP & DNS) panels right. It's got something to do with "AND $timeFilter" but I'm pretty new and still learning.
 - Get the RTT calculations right from the dpinger integration. It's in microseconds but for some reason doesn't match the graphs in pfSense when I compare them.
 
 ### Plugins
