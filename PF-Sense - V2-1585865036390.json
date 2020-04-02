@@ -24,6 +24,12 @@
     },
     {
       "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.4.0"
+    },
+    {
+      "type": "panel",
       "id": "grafana-worldmap-panel",
       "name": "Worldmap Panel",
       "version": "0.2.1"
@@ -71,7 +77,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1585844195441,
+  "iteration": 1585864393668,
   "links": [],
   "panels": [
     {
@@ -121,10 +127,12 @@
       "mappingType": 1,
       "mappingTypes": [
         {
+          "$$hashKey": "object:971",
           "name": "value to text",
           "value": 1
         },
         {
+          "$$hashKey": "object:972",
           "name": "range to text",
           "value": 2
         }
@@ -152,13 +160,15 @@
       "tableColumn": "",
       "targets": [
         {
-          "alias": "Load 15m",
+          "alias": "",
           "groupBy": [],
           "measurement": "system",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT \"n_users\" FROM \"system\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter",
+          "rawQuery": false,
           "refId": "A",
-          "resultFormat": "table",
+          "resultFormat": "time_series",
           "select": [
             [
               {
@@ -185,6 +195,7 @@
       "valueFontSize": "80%",
       "valueMaps": [
         {
+          "$$hashKey": "object:974",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -811,6 +822,7 @@
                 }
               ]
             },
+            "title": "${__series.name}",
             "unit": "percent"
           },
           "overrides": [],
@@ -830,12 +842,6 @@
             {
               "params": [
                 "device"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "path"
               ],
               "type": "tag"
             }
@@ -868,17 +874,11 @@
               "key": "path",
               "operator": "=",
               "value": "/var/run"
-            },
-            {
-              "condition": "AND",
-              "key": "device",
-              "operator": "=~",
-              "value": "/^$Disk$/"
             }
           ]
         }
       ],
-      "title": "Disk Space Used",
+      "title": "Disk Utilization",
       "type": "gauge"
     },
     {
@@ -1248,7 +1248,7 @@
       }
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
@@ -1257,591 +1257,399 @@
         "y": 13
       },
       "id": 41,
-      "panels": [
-        {
-          "circleMaxSize": 30,
-          "circleMinSize": 2,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "datasource": "$dataSource",
-          "decimals": 0,
-          "description": "https://www.reddit.com/r/pfBlockerNG/comments/bu0ms0/pfblockerngtelegrafinfluxdb_ip_block_list/",
-          "esMetric": "Count",
-          "gridPos": {
-            "h": 9,
-            "w": 7,
-            "x": 0,
-            "y": 14
-          },
-          "hideEmpty": false,
-          "hideZero": false,
-          "id": 34,
-          "initialZoom": 1,
-          "locationData": "countries",
-          "mapCenter": "(0°, 0°)",
-          "mapCenterLatitude": 0,
-          "mapCenterLongitude": 0,
-          "maxDataPoints": 1,
-          "mouseWheelZoom": false,
-          "showLegend": true,
-          "stickyLabels": false,
-          "tableQueryOptions": {
-            "geohashField": "geohash",
-            "latitudeField": "latitude",
-            "longitudeField": "longitude",
-            "metricField": "metric",
-            "queryType": "geohash"
-          },
-          "targets": [
-            {
-              "alias": "$tag_GeoIP",
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT count(\"action\") FROM \"ip_block_log\"  GROUP BY \"GeoIP\"",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": []
-            }
-          ],
-          "thresholds": "1,5",
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "pfBlocker - IP",
-          "type": "grafana-worldmap-panel",
-          "unitPlural": "",
-          "unitSingle": "",
-          "valueName": "total"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": true,
-          "colors": [
-            "#299c46",
-            "rgba(237, 129, 40, 0.89)",
-            "#d44a3a"
-          ],
-          "datasource": "${DS_INFLUXDB}",
-          "format": "short",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "gridPos": {
-            "h": 3,
-            "w": 3,
-            "x": 7,
-            "y": 14
-          },
-          "id": 27,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": false,
-            "ymax": null,
-            "ymin": null
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "groupBy": [],
-              "measurement": "dnsbl_log",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT count(\"hitormiss\") FROM \"dnsbl_log\" WHERE (\"host\" =~ /^$Host$/)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "hitormiss"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "count"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "host",
-                  "operator": "=~",
-                  "value": "/^$Host$/"
-                }
-              ]
-            }
-          ],
-          "thresholds": "",
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "DNSBL Block",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "columns": [
-            {
-              "text": "Total",
-              "value": "total"
-            }
-          ],
-          "datasource": "${DS_INFLUXDB}",
-          "fontSize": "100%",
-          "gridPos": {
-            "h": 9,
-            "w": 8,
-            "x": 10,
-            "y": 14
-          },
-          "id": 67,
-          "pageSize": 10,
-          "showHeader": true,
-          "sort": {
-            "col": 1,
-            "desc": true
-          },
-          "styles": [
-            {
-              "alias": "",
-              "align": "left",
-              "colorMode": null,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "dateFormat": "YYYY-MM-DD HH:mm:ss",
-              "decimals": 2,
-              "link": false,
-              "mappingType": 1,
-              "pattern": "Total",
-              "thresholds": [],
-              "type": "number",
-              "unit": "short"
-            },
-            {
-              "alias": "Host",
-              "align": "left",
-              "colorMode": null,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "dateFormat": "YYYY-MM-DD HH:mm:ss",
-              "decimals": 2,
-              "mappingType": 1,
-              "pattern": "Metric",
-              "thresholds": [],
-              "type": "number",
-              "unit": "short"
-            }
-          ],
-          "targets": [
-            {
-              "alias": "[[tag_destination]]",
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "destination"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "dnsbl_log",
-              "orderByTime": "ASC",
-              "policy": "autogen",
-              "query": "SELECT count(\"hitormiss\") FROM \"autogen\".\"dnsbl_log\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval), \"destination\" fill(null)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "hitormiss"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "count"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "host",
-                  "operator": "=~",
-                  "value": "/^$Host$/"
-                }
-              ]
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "pfBlocker - DNS",
-          "transform": "timeseries_aggregations",
-          "type": "table"
-        }
-      ],
+      "panels": [],
       "title": "Systems",
       "type": "row"
     },
     {
-      "collapsed": true,
-      "datasource": "${DS_INFLUXDB}",
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "$dataSource",
+      "decimals": 0,
+      "description": "https://www.reddit.com/r/pfBlockerNG/comments/bu0ms0/pfblockerngtelegrafinfluxdb_ip_block_list/",
+      "esMetric": "Count",
       "gridPos": {
-        "h": 1,
-        "w": 24,
+        "h": 9,
+        "w": 7,
         "x": 0,
         "y": 14
       },
-      "id": 143,
-      "panels": [
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 34,
+      "initialZoom": 1,
+      "locationData": "countries",
+      "mapCenter": "(0°, 0°)",
+      "mapCenterLatitude": 0,
+      "mapCenterLongitude": 0,
+      "maxDataPoints": 1,
+      "mouseWheelZoom": false,
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "latitudeField": "latitude",
+        "longitudeField": "longitude",
+        "metricField": "metric",
+        "queryType": "geohash"
+      },
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_INFLUXDB}",
-          "description": "",
-          "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 8,
-            "w": 9,
-            "x": 0,
-            "y": 15
-          },
-          "hiddenSeries": false,
-          "id": 4,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "rightSide": false,
-            "show": true,
-            "sideWidth": null,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
+          "alias": "$tag_GeoIP",
+          "groupBy": [
             {
-              "alias": "$tag_gateway_name",
-              "groupBy": [
-                {
-                  "params": [
-                    "$__interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "gateway_name"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "linear"
-                  ],
-                  "type": "fill"
-                }
+              "params": [
+                "$__interval"
               ],
-              "measurement": "gateways",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "rtt"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "host",
-                  "operator": "=~",
-                  "value": "/^$Host$/"
-                },
-                {
-                  "condition": "AND",
-                  "key": "gateway_name",
-                  "operator": "=~",
-                  "value": "/^$Gateway$/"
-                }
-              ]
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Gateway RTT - $Gateway ",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "µs",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
+              "type": "time"
             },
             {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
+              "params": [
+                "null"
+              ],
+              "type": "fill"
             }
           ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "columns": [],
-          "datasource": "${DS_INFLUXDB}",
-          "fontSize": "100%",
-          "gridPos": {
-            "h": 8,
-            "w": 9,
-            "x": 9,
-            "y": 15
-          },
-          "id": 85,
-          "pageSize": null,
-          "pluginVersion": "6.7.1",
-          "showHeader": true,
-          "sort": {
-            "col": 1,
-            "desc": true
-          },
-          "styles": [
-            {
-              "$$hashKey": "object:8221",
-              "alias": "",
-              "align": "auto",
-              "colorMode": null,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "dateFormat": "YYYY-MM-DD HH:mm:ss",
-              "decimals": 2,
-              "mappingType": 1,
-              "pattern": "",
-              "thresholds": [],
-              "type": "number",
-              "unit": "short"
-            }
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT count(\"action\") FROM \"ip_block_log\" WHERE $timeFilter GROUP BY \"GeoIP\"",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
           ],
-          "targets": [
-            {
-              "alias": "$tag_name",
-              "groupBy": [
-                {
-                  "params": [
-                    "ip_address"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "name"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "mac_address"
-                  ],
-                  "type": "tag"
-                }
-              ],
-              "limit": "",
-              "measurement": "interface",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT last(\"status\") AS \"NIC Status\" FROM \"interface\" WHERE (\"host\" =~ /^$Host$/ AND \"name\" =~ /^$Interfaces$/) AND $timeFilter GROUP BY \"mac_address\", \"ip_address\", \"name\"",
-              "rawQuery": false,
-              "refId": "A",
-              "resultFormat": "table",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "status"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "last"
-                  },
-                  {
-                    "params": [
-                      "NIC Status"
-                    ],
-                    "type": "alias"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "host",
-                  "operator": "=~",
-                  "value": "/^$Host$/"
-                },
-                {
-                  "condition": "AND",
-                  "key": "name",
-                  "operator": "=~",
-                  "value": "/^$Interfaces$/"
-                }
-              ]
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Interface Info",
-          "transform": "table",
-          "type": "table"
+          "tags": []
         }
       ],
-      "title": "Network Stats",
-      "type": "row"
+      "thresholds": "1,5",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "pfBlocker - IP",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "valueName": "total"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_INFLUXDB}",
+      "format": "short",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 7,
+        "y": 14
+      },
+      "id": 27,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "$$hashKey": "object:1171",
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "$$hashKey": "object:1172",
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "dnsbl_log",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT count(\"hitormiss\") FROM \"dnsbl_log\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "hitormiss"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "count"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "pfBlocker - DNS - Total Domains Blocked",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "$$hashKey": "object:1174",
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "${DS_INFLUXDB}",
+      "fontSize": "80%",
+      "format": "short",
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 10,
+        "y": 14
+      },
+      "id": 160,
+      "interval": null,
+      "legend": {
+        "percentage": true,
+        "show": true,
+        "sideWidth": null,
+        "sort": "total",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": ".5",
+      "targets": [
+        {
+          "alias": "[[tag_destination]]",
+          "groupBy": [
+            {
+              "params": [
+                "destination"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "dnsbl_log",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT count(\"hitormiss\") FROM \"autogen\".\"dnsbl_log\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter GROUP BY \"destination\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "hitormiss"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "count"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "pfBlocker - DNS",
+      "type": "grafana-piechart-panel",
+      "valueName": "total"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_INFLUXDB}",
+      "format": "short",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 7,
+        "y": 17
+      },
+      "id": 162,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "$$hashKey": "object:194",
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "$$hashKey": "object:195",
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "ip_block_log",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT count(\"hitormiss\") FROM \"dnsbl_log\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "action"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "count"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "pfBlocker - IP - Total IPs Blocked",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "$$hashKey": "object:197",
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     },
     {
       "collapsed": false,
@@ -1850,7 +1658,274 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 23
+      },
+      "id": 143,
+      "panels": [],
+      "title": "Network Stats",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_INFLUXDB}",
+      "description": "",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 0,
+        "y": 24
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": null,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "repeatDirection": "h",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_gateway_name",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "gateway_name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "linear"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "gateways",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "rtt"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "gateway_name",
+              "operator": "=~",
+              "value": "/^$Gateway$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Gateway RTT - $Gateway ",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "µs",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "columns": [],
+      "datasource": "${DS_INFLUXDB}",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 9,
+        "y": 24
+      },
+      "id": 85,
+      "pageSize": null,
+      "pluginVersion": "6.7.1",
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": true
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:8221",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "alias": "$tag_name",
+          "groupBy": [
+            {
+              "params": [
+                "ip_address"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "mac_address"
+              ],
+              "type": "tag"
+            }
+          ],
+          "limit": "",
+          "measurement": "interface",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"status\") AS \"NIC Status\" FROM \"interface\" WHERE (\"host\" =~ /^$Host$/ AND \"name\" =~ /^$Interfaces$/) AND $timeFilter GROUP BY \"mac_address\", \"ip_address\", \"name\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "status"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "NIC Status"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Interfaces$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Interface Info",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "datasource": "${DS_INFLUXDB}",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 32
       },
       "id": 14,
       "panels": [],
@@ -1870,7 +1945,7 @@
         "h": 8,
         "w": 9,
         "x": 0,
-        "y": 16
+        "y": 33
       },
       "hiddenSeries": false,
       "id": 2,
@@ -2078,7 +2153,7 @@
         "h": 8,
         "w": 9,
         "x": 9,
-        "y": 16
+        "y": 33
       },
       "hiddenSeries": false,
       "id": 37,
@@ -2378,7 +2453,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 24
+        "y": 41
       },
       "id": 43,
       "panels": [],
@@ -2397,7 +2472,7 @@
         "h": 7,
         "w": 9,
         "x": 0,
-        "y": 25
+        "y": 42
       },
       "hiddenSeries": false,
       "id": 38,
@@ -2625,7 +2700,7 @@
         "h": 7,
         "w": 9,
         "x": 9,
-        "y": 25
+        "y": 42
       },
       "hiddenSeries": false,
       "id": 39,
@@ -2972,7 +3047,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "InfluxDB",
           "value": "InfluxDB"
         },
@@ -3185,7 +3260,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -3208,5 +3283,5 @@
   "variables": {
     "list": []
   },
-  "version": 33
+  "version": 53
 }
