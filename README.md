@@ -16,6 +16,8 @@
 - WAN Statistics - Traffic & Throughput (Identified by dashboard variable)
 - LAN Statistics - Traffic & Throughput (Identified by dashboard variable)
 
+![Test Image 1](Grafana-pfSense.png)
+
 ## Configuration
 The Config for the dashboard relies on the variables defined within Grafana.  When importing the dashboard, make sure to select your datasource.
 
