@@ -16,17 +16,40 @@
 - WAN Statistics - Traffic & Throughput (Identified by dashboard variable)
 - LAN Statistics - Traffic & Throughput (Identified by dashboard variable)
 
-![Test Image 1](Grafana-pfSense.png)
+![Screenshot](Grafana-pfSense.png)
 
 ## Configuration
-The Config for the dashboard relies on the variables defined within Grafana.  When importing the dashboard, make sure to select your datasource.
+
+### Grafana
+The Config for the dashboard relies on the variables defined within the dashboard in Grafana.  When importing the dashboard, make sure to select your datasource. 
 
 Dashboard Settings -> Variables
 
-WAN - $WAN is a static variable defined so that a separate dashboard panel can be created for WAN interfaces.  Use a comma-separated list for multiple WAN interfaces.
+WAN - $WAN is a static variable defined so that a separate dashboard panel can be created for WAN interfaces stats.  Use a comma-separated list for multiple WAN interfaces.
 
-LAN_Interfaces - $LAN_Interfaces uses a regex to remove any interfaces you don't want to be grouped as LAN.  I have my WAN adapter and igb2 that hosts multiple vlans and nothing else.  The filtering happens in the "Regex" field.  I use a negative lookahead regex to match the interfaces I want to be excluded.  It should be pretty easy to understand what you need to do here.
-After writing this up, I realize I need to change this variable name, it's just not going to happen right now.
+LAN_Interfaces - $LAN_Interfaces uses a regex to remove any interfaces you don't want to be grouped as LAN. The filtering happens in the "Regex" field. I use a negative lookahead regex to match the interfaces I want excluded.  It should be pretty easy to understand what you need to do here. I have excluded igb0 (WAN) and igb2 (only used to host vlans).
+
+After writing this up, I realize I need to change this variable name, it's just not going to happen right now. 
+
+### Telegraf
+[Telegraf Config](config/additional_config.conf)
+
+In the [/config](config/additional_config.conf) directory you will find all of the additional telegraf config. In pfSense, under Services -> Teltegraf, at the bottom of the page with the teeny tiny text box is where you paste in the included config.
+
+I also included the config for Unbound DNS and it's commented out.  I'm not currently using it, but it's fully functional, just uncomment if you want to use it.
+
+### Plugins
+[Plugins](plugins)
+
+I put all my plugins in /usr/local/bin and set them to 555
+
+To troubleshoot plugins, add the following lines to the agent block in /usr/local/etc/telegraf.conf and send a HUP to the telegraf pid.
+
+    debug = true
+    quiet = false
+    logfile = "/var/log/telegraf/telegraf.log"
+    
+I also included a wrapper script for Unbound DNS.  I'm not currently using it, but it's fully functional.
 
 ### Running on
 
@@ -46,23 +69,9 @@ What I updated:
 - Tag, templating - No need to specify all cpus or interfaces in the graph queries. These values are pulled in with queries.
 - Added chart to show all adapters, IP, MAC and Status[ from here](https://github.com/influxdata/telegraf/issues/3756#issuecomment-485606025 " from here")
 - Added Temperature data based on feedback from[ /u/tko1982](https://www.reddit.com/u/tko1982 " /u/tko1982") - CPU Temp and any other ACPI device that reports temp is now collected and reported
-- Cleaned up the telegraf config
-
-The dashboard has a bunch of variables that you don't need to mess with. The only one you will want to change is the $WAN. Just set that to your WAN interface and the graphs will update accordingly. There is a row for WAN network statistics that keys off of the $WAN variable. The LAN statistics include data for all interfaces excluding $WAN. You could easily apply this to any other interface you want to highlight.
 
 What I didn't do and need help with:
 
 - Include IP and ping methods from [/u/seb6596](https://www.reddit.com/u/seb6596 "/u/seb6596") when they are back online.
 - Make it pretty. I've never been good at this part
 - Get the RTT calculations right from the dpinger integration. It's in microseconds but for some reason doesn't match the graphs in pfSense when I compare them.
-
-### Plugins
-I put all my plugins in /usr/local/bin and set them to 555
-
-To troubleshoot plugins, add the following lines to the agent block in /usr/local/etc/telegraf.conf
-
-    debug = true
-    quiet = false
-    logfile = "/var/log/telegraf/telegraf.log"
-    
-In pfSense, under Services -> Teltegraf, at the bottom of the page with the teeny tiny text box, I have the following additional configuration included the extra config listed in the config dir
