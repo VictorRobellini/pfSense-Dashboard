@@ -19,26 +19,36 @@ foreach ($iflist as $ifname => $friendly) {
         $realif = get_real_interface($ifname);
         $mac = get_interface_mac($realif);
 
+        if (!isset($ipaddr)){
+                $ipaddr = 'Unassigned'
+        }
+        if (!isset($mac)){
+                $mac = 'Unavailable'
+        }
         if (strtolower($ifstatus) == "up"){
+                $ifstatus = 1;
+        }
+        if (strtolower($ifstatus) == "active"){
                 $ifstatus = 1;
         }
         if (strtolower($ifstatus) == "no carrier"){
                 $ifstatus = 0;
         }
+        if (strtolower($ifstatus) == "down"){
+                $ifstatus = 0;
+        }
         if (!isset($ifstatus)){
-                $ifstatus = "Unknown";
-        }
+                $ifstatus = 2;
+        }   
 
-        if (!empty($ipaddr)) {
-                printf("interface,host=%s,name=%s,ip_address=%s,mac_address=%s,friendlyname=%s,source=%s status=%s\n",
-                        $host,
-                        $realif,
-                        $ipaddr,
-                        $mac,
-                        $friendly,
-                        $source,
-                        $ifstatus
+        printf("interface,host=%s,name=%s,ip_address=%s,mac_address=%s,friendlyname=%s,source=%s status=%s\n",
+                $host,
+                $realif,
+                $ipaddr,
+                $mac,
+                $friendly,
+                $source,
+                $ifstatus
                 );
-        }
 }
 ?>
