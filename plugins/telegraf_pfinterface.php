@@ -30,10 +30,11 @@ foreach ($iflist as $ifname => $friendly) {
         }
 
         if (!empty($ipaddr)) {
-                printf("interfaces,host=%s,name=%s,ip_address=%s,friendlyname=%s,source=%s status=%s\n",
+                printf("interface,host=%s,name=%s,ip_address=%s,mac_address=%s,friendlyname=%s,source=%s status=%s\n",
                         $host,
                         $realif,
                         $ipaddr,
+                        $mac,
                         $friendly,
                         $source,
                         $ifstatus
