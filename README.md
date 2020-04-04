@@ -15,7 +15,7 @@
 - List of interfaces with IP, MAC, Status and pfSesnse labels thanks to [/u/trumee](https://www.reddit.com/r/PFSENSE/comments/fsss8r/additional_grafana_dashboard/fmal0t6/)
 - WAN Statistics - Traffic & Throughput (Identified by dashboard variable)
 - LAN Statistics - Traffic & Throughput (Identified by dashboard variable)
-- Unbound stats - Plugin and config included and working but not implmented
+- Unbound stats - Plugin and config included and working but not implemented
 
 ![Screenshot](Grafana-pfSense.png)
 
