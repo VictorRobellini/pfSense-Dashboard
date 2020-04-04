@@ -77,7 +77,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1585974198844,
+  "iteration": 1586042104220,
   "links": [],
   "panels": [
     {
@@ -714,10 +714,12 @@
       "mappingType": 1,
       "mappingTypes": [
         {
+          "$$hashKey": "object:345",
           "name": "value to text",
           "value": 1
         },
         {
+          "$$hashKey": "object:346",
           "name": "range to text",
           "value": 2
         }
@@ -775,9 +777,10 @@
       "timeFrom": "30s",
       "title": "Uptime",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "50%",
       "valueMaps": [
         {
+          "$$hashKey": "object:348",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -1846,14 +1849,15 @@
           "align": "auto",
           "colorMode": "value",
           "colors": [
+            "#FADE2A",
             "#F2495C",
-            "#73BF69",
-            "#C4162A"
+            "#73BF69"
           ],
           "decimals": 2,
           "mappingType": 1,
           "pattern": "Status",
           "thresholds": [
+            "0",
             "1",
             "2"
           ],
@@ -1862,18 +1866,18 @@
           "valueMaps": [
             {
               "$$hashKey": "object:7515",
-              "text": "UP",
-              "value": "1"
-            },
-            {
-              "$$hashKey": "object:7516",
               "text": "DOWN",
               "value": "0"
             },
             {
+              "$$hashKey": "object:7516",
+              "text": "UP",
+              "value": "1"
+            },
+            {
               "$$hashKey": "object:7517",
-              "text": "TEST",
-              "value": "3"
+              "text": "UNKNOWN",
+              "value": "2"
             }
           ]
         },
@@ -2186,7 +2190,7 @@
           "$$hashKey": "object:842",
           "format": "bps",
           "label": "",
-          "logBase": 1,
+          "logBase": 2,
           "max": null,
           "min": null,
           "show": true
@@ -2733,7 +2737,7 @@
           "$$hashKey": "object:1802",
           "format": "bps",
           "label": "",
-          "logBase": 1,
+          "logBase": 2,
           "max": null,
           "min": null,
           "show": true
@@ -3080,6 +3084,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:1249",
           "format": "short",
           "label": null,
           "logBase": 2,
@@ -3088,6 +3093,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:1250",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -3102,7 +3108,7 @@
       }
     }
   ],
-  "refresh": "5m",
+  "refresh": "30m",
   "schemaVersion": 22,
   "style": "dark",
   "tags": [
@@ -3245,7 +3251,7 @@
         "options": [],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
         "refresh": 1,
-        "regex": "/^(?!igb0$|igb2$)/",
+        "regex": "/^(?!igb0$|igb1|igb3|igb2$)/",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
@@ -3349,5 +3355,5 @@
   "variables": {
     "list": []
   },
-  "version": 15
+  "version": 24
 }
