@@ -77,7 +77,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1585974198841,
+  "iteration": 1585974198844,
   "links": [],
   "panels": [
     {
@@ -1842,7 +1842,7 @@
         },
         {
           "$$hashKey": "object:7481",
-          "alias": "UP/DOWN",
+          "alias": "",
           "align": "auto",
           "colorMode": "value",
           "colors": [
@@ -3349,5 +3349,5 @@
   "variables": {
     "list": []
   },
-  "version": 13
+  "version": 15
 }
