@@ -75,4 +75,5 @@ What I updated:
 - Include IP and ping methods from [/u/seb6596](https://www.reddit.com/u/seb6596 "/u/seb6596") when they are back online.
 - Make it pretty. I've never been good at this part
 - Get the RTT calculations right from the dpinger integration. It's in microseconds but for some reason doesn't match the graphs in pfSense when I compare them.
-- Fix the go plugin to show interface status (up/down) and subnet.
+- Figure out if I can show subnet and media speed/duplex for the interfaces
+- Use the pfSense labels in the graphs that show network stats - 2 different measurements
