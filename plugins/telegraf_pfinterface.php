@@ -20,10 +20,10 @@ foreach ($iflist as $ifname => $friendly) {
         $mac = get_interface_mac($realif);
 
         if (!isset($ipaddr)){
-                $ipaddr = 'Unassigned'
+                $ipaddr = "Unassigned";
         }
         if (!isset($mac)){
-                $mac = 'Unavailable'
+                $mac = "Unavailable";
         }
         if (strtolower($ifstatus) == "up"){
                 $ifstatus = 1;
