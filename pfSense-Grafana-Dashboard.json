@@ -20,7 +20,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.7.1"
+      "version": "6.7.2"
     },
     {
       "type": "panel",
@@ -77,7 +77,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1586042104220,
+  "iteration": 1586218911223,
   "links": [],
   "panels": [
     {
@@ -248,7 +248,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.1",
+      "pluginVersion": "6.7.2",
       "targets": [
         {
           "alias": "CPU Total",
@@ -505,7 +505,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.1",
+      "pluginVersion": "6.7.2",
       "targets": [
         {
           "alias": "Load",
@@ -835,7 +835,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.1",
+      "pluginVersion": "6.7.2",
       "repeat": null,
       "repeatDirection": "h",
       "targets": [
@@ -929,7 +929,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.1",
+      "pluginVersion": "6.7.2",
       "targets": [
         {
           "alias": "Ram",
@@ -1360,7 +1360,7 @@
         "#d44a3a"
       ],
       "datasource": "${DS_INFLUXDB}",
-      "format": "short",
+      "format": "locale",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -1552,7 +1552,8 @@
         "#d44a3a"
       ],
       "datasource": "${DS_INFLUXDB}",
-      "format": "short",
+      "decimals": 0,
+      "format": "locale",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -1591,6 +1592,7 @@
       "prefixFontSize": "50%",
       "rangeMaps": [
         {
+          "$$hashKey": "object:225",
           "from": "null",
           "text": "N/A",
           "to": "null"
@@ -1600,7 +1602,7 @@
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": false,
         "lineColor": "rgb(31, 120, 193)",
-        "show": false,
+        "show": true,
         "ymax": null,
         "ymin": null
       },
@@ -3113,7 +3115,8 @@
   "style": "dark",
   "tags": [
     "pfsense",
-    "pfblocker"
+    "pfblocker",
+    "telegraf"
   ],
   "templating": {
     "list": [
@@ -3355,5 +3358,5 @@
   "variables": {
     "list": []
   },
-  "version": 24
+  "version": 29
 }
