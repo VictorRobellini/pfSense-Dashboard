@@ -77,7 +77,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1586218911223,
+  "iteration": 1586560615790,
   "links": [],
   "panels": [
     {
@@ -1268,9 +1268,9 @@
       "circleMaxSize": 30,
       "circleMinSize": 2,
       "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
+        "#FF9830",
+        "#FF9830",
+        "#C4162A"
       ],
       "datasource": "$dataSource",
       "decimals": 0,
@@ -1284,15 +1284,15 @@
       },
       "hideEmpty": false,
       "hideZero": false,
-      "id": 34,
+      "id": 207,
       "initialZoom": 1,
       "locationData": "countries",
       "mapCenter": "(0°, 0°)",
       "mapCenterLatitude": 0,
       "mapCenterLongitude": 0,
       "maxDataPoints": 1,
-      "mouseWheelZoom": false,
-      "showLegend": true,
+      "mouseWheelZoom": true,
+      "showLegend": false,
       "stickyLabels": false,
       "tableQueryOptions": {
         "geohashField": "geohash",
@@ -1313,32 +1313,39 @@
             },
             {
               "params": [
-                "null"
+                "GeoIP"
               ],
-              "type": "fill"
+              "type": "tag"
             }
           ],
+          "measurement": "ip_block_log",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT count(\"action\") FROM \"ip_block_log\" WHERE $timeFilter GROUP BY \"GeoIP\"",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "value"
+                  "action"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "count"
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            }
+          ]
         }
       ],
       "thresholds": "1,5",
@@ -1471,8 +1478,9 @@
         "threshold": 0
       },
       "datasource": "${DS_INFLUXDB}",
+      "decimals": null,
       "fontSize": "80%",
-      "format": "short",
+      "format": "locale",
       "gridPos": {
         "h": 9,
         "w": 8,
@@ -1483,6 +1491,7 @@
       "interval": null,
       "legend": {
         "percentage": true,
+        "percentageDecimals": 2,
         "show": true,
         "sideWidth": null,
         "sort": "total",
@@ -3335,7 +3344,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -3358,5 +3367,5 @@
   "variables": {
     "list": []
   },
-  "version": 29
+  "version": 39
 }
