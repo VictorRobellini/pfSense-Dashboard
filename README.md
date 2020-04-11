@@ -66,6 +66,8 @@ To troubleshoot plugins, add the following lines to the agent block in /usr/loca
 #### Restarting Telegraf
     # ps -aux | grep -i telegraf
     # kill -HUP <pid of telegraf proces>
+
+Now go read /var/log/telegraf/telegraf.log
     
 ### InfluxDB
 When in doubt, run a few queries to see if the data you are looking for is being populated.
