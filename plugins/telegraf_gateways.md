@@ -1,4 +1,3 @@
-
 Depending on how recent your pfSense install is, you may need to use the python 3.7 version of the plugin.
 If you are running 2.4.5, you probably want telegraf_gateways-3.7.py. They both output he same data in the same format.
 
@@ -13,3 +12,7 @@ Does /usr/local/bin/python3.7 exist on your pfSense system?  If so, use this
 telegraf_gateways-3.7.py
 
 If you have both 2.7 and 3.7 on your system, use 3.7
+
+Thanks to [this thread](https://forum.netgate.com/topic/152132/grafana-dashboard-using-telegraf-with-additional-plugins/16), user [bigjohns97](https://forum.netgate.com/user/bigjohns97) for following up and [fastjack](https://gist.github.com/fastjack) for the dev effort.
+
+
