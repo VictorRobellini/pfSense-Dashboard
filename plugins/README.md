@@ -11,7 +11,7 @@ Does /usr/local/bin/python3.7 exist on your pfSense system? If so, use this tele
 
 If you have both 2.7 and 3.7 on your system, use 3.7
 
-Thanks to this thread, user bigjohns97 for following up and fastjack for the dev effort.
+Thanks to [this thread](https://forum.netgate.com/topic/152132/grafana-dashboard-using-telegraf-with-additional-plugins/16), user [bigjohns97](https://forum.netgate.com/user/bigjohns97) for following up and [fastjack](https://gist.github.com/fastjack) for the dev effort.
 
 # telegraf_netifinfo_plugin
 #### This plugin is not in use on my system but it's still worth documenting.
