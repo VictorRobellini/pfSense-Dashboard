@@ -16,6 +16,6 @@ for sock_name in glob.glob("dpinger*.sock"):
     s = sock.connect(sock_path)
     line = sock.recv(1024).decode().split('\n', 1)[0]
     values = line.split()
-    print("gateways,gateway_name="+values[0]+" rtt="+str(int(values[1])/100.0)+ \
-          ",rttsd="+str(int(values[2])/100.0)+",loss="+str(int(values[3]))+"i")
+    print("gateways,gateway_name="+values[0]+" rtt="+str(int(values[1])/1.0)+ \
+        ",rttsd="+str(int(values[2])/1.0)+",loss="+str(int(values[3]))+"i")
     sock.close()
