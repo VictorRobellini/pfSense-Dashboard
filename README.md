@@ -23,6 +23,8 @@
 
     Grafana 6.7.1
     Influxdb 1.7.10
+    
+**Make sure you are using pfBlockerNG-devel**
 
 ## Configuration
 
