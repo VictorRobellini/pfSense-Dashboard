@@ -21,9 +21,61 @@
 
 ## Running on
 
-    Grafana 6.7.1
+    Grafana 6.7.2
     Influxdb 1.7.10
-    
+
+### docker-compose example with persistent storage
+```docker-compose
+
+  grafana-pfSense:
+    image: "grafana/grafana:6.7.2"
+    container_name: grafana
+    hostname: grafana
+    mem_limit: 4gb
+    ports:
+      - "3000:3000"
+    environment:
+      TZ: "America/New_York"
+      GF_INSTALL_PLUGINS: "grafana-clock-panel,grafana-simple-json-datasource,grafana-piechart-panel,grafana-worldmap-panel"
+      GF_PATHS_DATA: "/var/lib/grafana"
+      GF_DEFAULT_INSTANCE_NAME: "home"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_SERVER_ENABLE_GZIP: "true"
+      GF_SERVER_DOMAIN: "home.mydomain"
+    volumes:
+      - '/share/ContainerData/grafana:/var/lib/grafana'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100M"
+    network_mode: bridge
+
+  influxdb-pfsense:
+    image: "influxdb:1.7.10-alpine"
+    container_name: influxdb
+    hostname: influxdb
+    mem_limit: 10gb
+    ports:
+      - "2003:2003"
+      - "8086:8086"
+    environment:
+      TZ: "America/New_York"
+      INFLUXDB_DATA_QUERY_LOG_ENABLED: "false"
+      INFLUXDB_REPORTING_DISABLED: "true"
+      INFLUXDB_ADMIN_USER: "admin"
+      INFLUXDB_ADMIN_PASSWORD: "adminpassword"
+      INFLUXDB_USER: "pfsense"
+      INFLUXDB_USER_PASSWORD: "pfsenseuserpassword"
+      INFLUXDB_DB: "pfsense"
+    volumes:
+      - '/share/ContainerData/influxdb:/var/lib/influxdb'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100M"
+    network_mode: bridge
+```
+   
 **Make sure you are using pfBlockerNG-devel**
 
 ## Configuration
