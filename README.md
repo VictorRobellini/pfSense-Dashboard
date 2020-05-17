@@ -87,7 +87,7 @@ Dashboard Settings -> Variables
 
 WAN - $WAN is a static variable defined so that a separate dashboard panel can be created for WAN interfaces stats.  Use a comma-separated list for multiple WAN interfaces.
 
-LAN_Interfaces - $LAN_Interfaces uses a regex to remove any interfaces you don't want to be grouped as LAN. The filtering happens in the "Regex" field. I use a negative lookahead regex to match the interfaces I want excluded.  It should be pretty easy to understand what you need to do here. I have excluded igb0 (WAN) and igb1,igb2,igb33 (only used to host vlans).
+LAN_Interfaces - $LAN_Interfaces uses a regex to remove any interfaces you don't want to be grouped as LAN. The filtering happens in the "Regex" field. I use a negative lookahead regex to match the interfaces I want excluded.  It should be pretty easy to understand what you need to do here. I have excluded igb0 (WAN) and igb1,igb2,igb3 (only used to host vlans).
 
 After writing this up, I realize I need to change this variable name, it's just not going to happen right now. 
 
