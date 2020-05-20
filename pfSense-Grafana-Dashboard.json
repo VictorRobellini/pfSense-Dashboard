@@ -1,7 +1,68 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_INFLUXDB",
+      "label": "InfluxDB",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "6.7.2"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart",
+      "version": "1.4.0"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-worldmap-panel",
+      "name": "Worldmap Panel",
+      "version": "0.2.1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
+        "$$hashKey": "object:327",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -15,13 +76,13 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 7,
-  "iteration": 1589949008186,
+  "id": null,
+  "iteration": 1588523576991,
   "links": [],
   "panels": [
     {
       "collapsed": false,
-      "datasource": "pfsense",
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -45,12 +106,6 @@
       "datasource": "$dataSource",
       "decimals": null,
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -72,10 +127,12 @@
       "mappingType": 1,
       "mappingTypes": [
         {
+          "$$hashKey": "object:971",
           "name": "value to text",
           "value": 1
         },
         {
+          "$$hashKey": "object:972",
           "name": "range to text",
           "value": 2
         }
@@ -138,6 +195,7 @@
       "valueFontSize": "80%",
       "valueMaps": [
         {
+          "$$hashKey": "object:974",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -146,35 +204,7 @@
       "valueName": "current"
     },
     {
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "displayName": "CPU",
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 70
-              },
-              {
-                "color": "red",
-                "value": 85
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 6,
         "w": 2,
@@ -183,17 +213,42 @@
       },
       "id": 8,
       "options": {
-        "orientation": "auto",
-        "reduceOptions": {
+        "fieldOptions": {
           "calcs": [
             "last"
           ],
+          "defaults": {
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 70
+                },
+                {
+                  "color": "red",
+                  "value": 85
+                }
+              ]
+            },
+            "title": "CPU",
+            "unit": "percent"
+          },
+          "overrides": [],
           "values": false
         },
+        "orientation": "auto",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "6.7.2",
       "targets": [
         {
           "alias": "CPU Total",
@@ -257,35 +312,7 @@
       "type": "gauge"
     },
     {
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 2,
-          "displayName": "Load",
-          "mappings": [],
-          "max": 2.5,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 1
-              },
-              {
-                "color": "red",
-                "value": 1.5
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 6,
         "w": 2,
@@ -294,17 +321,42 @@
       },
       "id": 10,
       "options": {
-        "orientation": "auto",
-        "reduceOptions": {
+        "fieldOptions": {
           "calcs": [
             "last"
           ],
+          "defaults": {
+            "decimals": 2,
+            "mappings": [],
+            "max": 2.5,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 1
+                },
+                {
+                  "color": "red",
+                  "value": 1.5
+                }
+              ]
+            },
+            "title": "Load"
+          },
+          "overrides": [],
           "values": false
         },
+        "orientation": "auto",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "6.7.2",
       "targets": [
         {
           "alias": "Load",
@@ -356,35 +408,7 @@
       "type": "gauge"
     },
     {
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "displayName": "Ram",
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 75
-              },
-              {
-                "color": "red",
-                "value": 85
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 6,
         "w": 2,
@@ -393,17 +417,42 @@
       },
       "id": 12,
       "options": {
-        "orientation": "auto",
-        "reduceOptions": {
+        "fieldOptions": {
           "calcs": [
             "last"
           ],
+          "defaults": {
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 75
+                },
+                {
+                  "color": "red",
+                  "value": 85
+                }
+              ]
+            },
+            "title": "Ram",
+            "unit": "percent"
+          },
+          "overrides": [],
           "values": false
         },
+        "orientation": "auto",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "6.7.2",
       "targets": [
         {
           "alias": "Ram",
@@ -460,33 +509,6 @@
       "cacheTimeout": null,
       "datasource": "$dataSource",
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "displayName": "${__series.name}",
-          "mappings": [],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#299c46",
-                "value": null
-              },
-              {
-                "color": "rgba(237, 129, 40, 0.89)",
-                "value": 60
-              },
-              {
-                "color": "#d44a3a",
-                "value": 85
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
       "gridPos": {
         "h": 6,
         "w": 4,
@@ -496,17 +518,41 @@
       "id": 223,
       "links": [],
       "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
+        "fieldOptions": {
           "calcs": [
             "lastNotNull"
           ],
+          "defaults": {
+            "mappings": [],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#299c46",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 60
+                },
+                {
+                  "color": "#d44a3a",
+                  "value": 85
+                }
+              ]
+            },
+            "title": "${__series.name}",
+            "unit": "percent"
+          },
+          "overrides": [],
           "values": false
         },
+        "orientation": "horizontal",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "6.7.2",
       "repeatDirection": "h",
       "targets": [
         {
@@ -556,13 +602,7 @@
     },
     {
       "columns": [],
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "${DS_INFLUXDB}",
       "fontSize": "100%",
       "gridPos": {
         "h": 3,
@@ -579,6 +619,7 @@
       },
       "styles": [
         {
+          "$$hashKey": "object:838",
           "alias": "Time",
           "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
@@ -586,6 +627,7 @@
           "type": "hidden"
         },
         {
+          "$$hashKey": "object:839",
           "alias": "",
           "align": "right",
           "colorMode": null,
@@ -670,20 +712,14 @@
       "timeShift": null,
       "title": "PF Information",
       "transform": "table",
-      "type": "table-old"
+      "type": "table"
     },
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "${DS_INFLUXDB}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -815,12 +851,6 @@
       ],
       "datasource": "$dataSource",
       "decimals": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -842,10 +872,12 @@
       "mappingType": 1,
       "mappingTypes": [
         {
+          "$$hashKey": "object:345",
           "name": "value to text",
           "value": 1
         },
         {
+          "$$hashKey": "object:346",
           "name": "range to text",
           "value": 2
         }
@@ -906,6 +938,7 @@
       "valueFontSize": "50%",
       "valueMaps": [
         {
+          "$$hashKey": "object:348",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -915,13 +948,7 @@
     },
     {
       "columns": [],
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "${DS_INFLUXDB}",
       "fontSize": "100%",
       "gridPos": {
         "h": 3,
@@ -938,6 +965,7 @@
       },
       "styles": [
         {
+          "$$hashKey": "object:838",
           "alias": "Time",
           "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
@@ -945,6 +973,7 @@
           "type": "hidden"
         },
         {
+          "$$hashKey": "object:839",
           "alias": "",
           "align": "right",
           "colorMode": null,
@@ -1041,20 +1070,14 @@
       "timeShift": null,
       "title": "Process Information",
       "transform": "table",
-      "type": "table-old"
+      "type": "table"
     },
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "${DS_INFLUXDB}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1175,6 +1198,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:15942",
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -1183,6 +1207,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:15943",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1201,13 +1226,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "${DS_INFLUXDB}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1308,6 +1327,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:473",
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -1316,6 +1336,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:474",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1334,13 +1355,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "${DS_INFLUXDB}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1453,6 +1468,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:11067",
           "format": "celsius",
           "label": null,
           "logBase": 1,
@@ -1461,6 +1477,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:11068",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1476,7 +1493,7 @@
     },
     {
       "collapsed": false,
-      "datasource": "pfsense",
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1500,12 +1517,6 @@
       "decimals": 0,
       "description": "https://www.reddit.com/r/pfBlockerNG/comments/bu0ms0/pfblockerngtelegrafinfluxdb_ip_block_list/",
       "esMetric": "Count",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "gridPos": {
         "h": 9,
         "w": 7,
@@ -1548,7 +1559,7 @@
               "type": "tag"
             }
           ],
-          "measurement": "tail_ipblock",
+          "measurement": "ip_block_log",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT count(\"action\") FROM \"ip_block_log\" WHERE $timeFilter GROUP BY \"GeoIP\"",
@@ -1589,36 +1600,21 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "locale"
-        },
-        "overrides": []
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_INFLUXDB}",
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 3,
@@ -1629,29 +1625,46 @@
       "id": 27,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ]
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "$$hashKey": "object:1171",
+          "name": "value to text",
+          "value": 1
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "values": false
+        {
+          "$$hashKey": "object:1172",
+          "name": "range to text",
+          "value": 2
         }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
       },
-      "pluginVersion": "7.0.0",
+      "tableColumn": "",
       "targets": [
         {
           "groupBy": [],
-          "measurement": "tail_dnsbl",
+          "measurement": "dnsbl_log",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT count(\"hitormiss\") FROM \"dnsbl_log\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter",
@@ -1681,10 +1694,21 @@
           ]
         }
       ],
+      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "pfBlocker - DNS - Total Domains Blocked",
-      "type": "stat"
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "$$hashKey": "object:1174",
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     },
     {
       "aliasColors": {},
@@ -1694,14 +1718,8 @@
         "label": "Others",
         "threshold": 0
       },
-      "datasource": "pfsense",
+      "datasource": "${DS_INFLUXDB}",
       "decimals": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fontSize": "80%",
       "format": "locale",
       "gridPos": {
@@ -1738,7 +1756,7 @@
               "type": "tag"
             }
           ],
-          "measurement": "tail_dnsbl",
+          "measurement": "dnsbl_log",
           "orderByTime": "ASC",
           "policy": "autogen",
           "query": "SELECT count(\"hitormiss\") FROM \"autogen\".\"dnsbl_log\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter GROUP BY \"destination\"",
@@ -1782,14 +1800,8 @@
         "label": "Others",
         "threshold": 0
       },
-      "datasource": "pfsense",
+      "datasource": "${DS_INFLUXDB}",
       "decimals": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fontSize": "80%",
       "format": "locale",
       "gridPos": {
@@ -1826,7 +1838,7 @@
               "type": "tag"
             }
           ],
-          "measurement": "tail_dnsbl",
+          "measurement": "dnsbl_log",
           "orderByTime": "ASC",
           "policy": "autogen",
           "query": "SELECT count(\"hitormiss\") FROM \"autogen\".\"dnsbl_log\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter GROUP BY \"destination\"",
@@ -1864,37 +1876,22 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 0,
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "locale"
-        },
-        "overrides": []
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_INFLUXDB}",
+      "decimals": 0,
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 3,
@@ -1905,29 +1902,47 @@
       "id": 162,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ]
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "$$hashKey": "object:194",
+          "name": "value to text",
+          "value": 1
         },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "values": false
+        {
+          "$$hashKey": "object:195",
+          "name": "range to text",
+          "value": 2
         }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "$$hashKey": "object:225",
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": null
       },
-      "pluginVersion": "7.0.0",
+      "tableColumn": "",
       "targets": [
         {
           "groupBy": [],
-          "measurement": "tail_ipblock",
+          "measurement": "ip_block_log",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT count(\"hitormiss\") FROM \"dnsbl_log\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter",
@@ -1957,14 +1972,25 @@
           ]
         }
       ],
+      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "pfBlocker - IP - Total IPs Blocked",
-      "type": "stat"
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "$$hashKey": "object:197",
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     },
     {
       "collapsed": false,
-      "datasource": "pfsense",
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1981,14 +2007,8 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "pfsense",
+      "datasource": "${DS_INFLUXDB}",
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2104,6 +2124,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:304",
           "format": "µs",
           "label": "",
           "logBase": 2,
@@ -2112,6 +2133,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:305",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2128,14 +2150,8 @@
     {
       "cacheTimeout": null,
       "columns": [],
-      "datasource": "pfsense",
+      "datasource": "${DS_INFLUXDB}",
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fontSize": "100%",
       "gridPos": {
         "h": 8,
@@ -2155,6 +2171,7 @@
       },
       "styles": [
         {
+          "$$hashKey": "object:7480",
           "alias": "Time",
           "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
@@ -2163,6 +2180,7 @@
           "type": "hidden"
         },
         {
+          "$$hashKey": "object:7481",
           "alias": "",
           "align": "auto",
           "colorMode": "value",
@@ -2183,20 +2201,24 @@
           "unit": "short",
           "valueMaps": [
             {
+              "$$hashKey": "object:7515",
               "text": "DOWN",
               "value": "0"
             },
             {
+              "$$hashKey": "object:7516",
               "text": "UP",
               "value": "1"
             },
             {
+              "$$hashKey": "object:7517",
               "text": "UNKNOWN",
               "value": "2"
             }
           ]
         },
         {
+          "$$hashKey": "object:470",
           "alias": "Interface",
           "align": "auto",
           "colorMode": null,
@@ -2300,11 +2322,11 @@
       "timeShift": null,
       "title": "Interface summary",
       "transform": "table",
-      "type": "table-old"
+      "type": "table"
     },
     {
       "collapsed": false,
-      "datasource": "pfsense",
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2314,13 +2336,6 @@
       "id": 14,
       "panels": [],
       "repeat": "WAN",
-      "scopedVars": {
-        "WAN": {
-          "selected": true,
-          "text": "vtnet1",
-          "value": "vtnet1"
-        }
-      },
       "title": "WAN - $WAN",
       "type": "row"
     },
@@ -2329,13 +2344,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "${DS_INFLUXDB}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2367,13 +2376,6 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "scopedVars": {
-        "WAN": {
-          "selected": true,
-          "text": "vtnet1",
-          "value": "vtnet1"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": true,
@@ -2521,6 +2523,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:842",
           "format": "bps",
           "label": "",
           "logBase": 2,
@@ -2529,6 +2532,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:843",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2549,12 +2553,6 @@
       "dashes": false,
       "datasource": "$dataSource",
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2589,13 +2587,6 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "scopedVars": {
-        "WAN": {
-          "selected": true,
-          "text": "vtnet1",
-          "value": "vtnet1"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -2838,6 +2829,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:1433",
           "format": "short",
           "label": null,
           "logBase": 2,
@@ -2846,6 +2838,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:1434",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2861,7 +2854,7 @@
     },
     {
       "collapsed": false,
-      "datasource": "pfsense",
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2878,13 +2871,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "${DS_INFLUXDB}",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2918,13 +2905,6 @@
       "renderer": "flot",
       "repeat": "LAN_Interfaces",
       "repeatDirection": "v",
-      "scopedVars": {
-        "LAN_Interfaces": {
-          "selected": true,
-          "text": "ovpns1",
-          "value": "ovpns1"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -3090,6 +3070,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:1802",
           "format": "bps",
           "label": "",
           "logBase": 2,
@@ -3098,6 +3079,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:1803",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -3118,12 +3100,6 @@
       "dashes": false,
       "datasource": "$dataSource",
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -3160,13 +3136,6 @@
       "renderer": "flot",
       "repeat": "LAN_Interfaces",
       "repeatDirection": "v",
-      "scopedVars": {
-        "LAN_Interfaces": {
-          "selected": true,
-          "text": "ovpns1",
-          "value": "ovpns1"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -3451,6 +3420,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:1249",
           "format": "short",
           "label": null,
           "logBase": 2,
@@ -3459,1815 +3429,7 @@
           "show": true
         },
         {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 49
-      },
-      "hiddenSeries": false,
-      "id": 235,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1589949008186,
-      "repeatPanelId": 38,
-      "scopedVars": {
-        "LAN_Interfaces": {
-          "selected": true,
-          "text": "vtnet0",
-          "value": "vtnet0"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_interface - LAN Traffic Recv",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_recv\"), 1s)  *-1 FROM \"autogen\".\"net\" WHERE (\"host\" = 'pfSense-home-master.home' AND \"interface\" = 'vtnet0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "bytes_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "*8"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - LAN Traffic Sent",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" = 'pfSense-home-master.home' AND \"interface\" = 'vtnet0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "bytes_sent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "*8"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "LAN Traffic - $LAN_Interfaces",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "bps",
-          "label": "",
-          "logBase": 2,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "$dataSource",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 0,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 49
-      },
-      "hiddenSeries": false,
-      "id": 238,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideZero": true,
-        "max": true,
-        "min": true,
-        "rightSide": false,
-        "show": true,
-        "sideWidth": null,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1589949008186,
-      "repeatPanelId": 39,
-      "scopedVars": {
-        "LAN_Interfaces": {
-          "selected": true,
-          "text": "vtnet0",
-          "value": "vtnet0"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_interface - Drop In",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"drop_in\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_in"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Drop Out",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"drop_out\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_out"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Err In",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"err_in\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "err_in"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Err Out",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"err_out\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "err_out"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Pckts Recv",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"packets_recv\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "G",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "packets_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Pckts Sent",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"packets_sent\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "H",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "packets_sent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "LAN Throughput - $LAN_Interfaces",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 2,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 56
-      },
-      "hiddenSeries": false,
-      "id": 236,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1589949008186,
-      "repeatPanelId": 38,
-      "scopedVars": {
-        "LAN_Interfaces": {
-          "selected": true,
-          "text": "vtnet0.420",
-          "value": "vtnet0.420"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_interface - LAN Traffic Recv",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_recv\"), 1s)  *-1 FROM \"autogen\".\"net\" WHERE (\"host\" = 'pfSense-home-master.home' AND \"interface\" = 'vtnet0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "bytes_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "*8"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - LAN Traffic Sent",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" = 'pfSense-home-master.home' AND \"interface\" = 'vtnet0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "bytes_sent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "*8"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "LAN Traffic - $LAN_Interfaces",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "bps",
-          "label": "",
-          "logBase": 2,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "$dataSource",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 0,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 56
-      },
-      "hiddenSeries": false,
-      "id": 239,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideZero": true,
-        "max": true,
-        "min": true,
-        "rightSide": false,
-        "show": true,
-        "sideWidth": null,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1589949008186,
-      "repeatPanelId": 39,
-      "scopedVars": {
-        "LAN_Interfaces": {
-          "selected": true,
-          "text": "vtnet0.420",
-          "value": "vtnet0.420"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_interface - Drop In",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"drop_in\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_in"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Drop Out",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"drop_out\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_out"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Err In",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"err_in\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "err_in"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Err Out",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"err_out\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "err_out"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Pckts Recv",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"packets_recv\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "G",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "packets_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Pckts Sent",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"packets_sent\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "H",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "packets_sent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "LAN Throughput - $LAN_Interfaces",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 2,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "pfsense",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 63
-      },
-      "hiddenSeries": false,
-      "id": 237,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1589949008186,
-      "repeatPanelId": 38,
-      "scopedVars": {
-        "LAN_Interfaces": {
-          "selected": true,
-          "text": "vtnet0.69",
-          "value": "vtnet0.69"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_interface - LAN Traffic Recv",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_recv\"), 1s)  *-1 FROM \"autogen\".\"net\" WHERE (\"host\" = 'pfSense-home-master.home' AND \"interface\" = 'vtnet0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "bytes_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "*8"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - LAN Traffic Sent",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" = 'pfSense-home-master.home' AND \"interface\" = 'vtnet0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "bytes_sent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              },
-              {
-                "params": [
-                  "*8"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "LAN Traffic - $LAN_Interfaces",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "bps",
-          "label": "",
-          "logBase": 2,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "$dataSource",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 0,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 63
-      },
-      "hiddenSeries": false,
-      "id": 240,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideZero": true,
-        "max": true,
-        "min": true,
-        "rightSide": false,
-        "show": true,
-        "sideWidth": null,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1589949008186,
-      "repeatPanelId": 39,
-      "scopedVars": {
-        "LAN_Interfaces": {
-          "selected": true,
-          "text": "vtnet0.69",
-          "value": "vtnet0.69"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_interface - Drop In",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"drop_in\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_in"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Drop Out",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"drop_out\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_out"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Err In",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"err_in\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "err_in"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Err Out",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"err_out\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "err_out"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Pckts Recv",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"packets_recv\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "G",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "packets_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Pckts Sent",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"packets_sent\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "H",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "packets_sent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "LAN Throughput - $LAN_Interfaces",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 2,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
+          "$$hashKey": "object:1250",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -5282,8 +3444,8 @@
       }
     }
   ],
-  "refresh": "30m",
-  "schemaVersion": 25,
+  "refresh": "30s",
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "pfsense",
@@ -5295,8 +3457,8 @@
       {
         "current": {
           "selected": false,
-          "text": "pfsense",
-          "value": "pfsense"
+          "text": "InfluxDB",
+          "value": "InfluxDB"
         },
         "hide": 0,
         "includeAll": false,
@@ -5305,7 +3467,6 @@
         "name": "dataSource",
         "options": [],
         "query": "influxdb",
-        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -5313,15 +3474,12 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "rose.local.mathiasp.me",
-          "value": "rose.local.mathiasp.me"
-        },
+        "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"pf\" WITH KEY = \"host\"",
         "hide": 0,
         "includeAll": false,
+        "index": -1,
         "label": "pfSense",
         "multi": false,
         "name": "Host",
@@ -5339,15 +3497,12 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"disk\" WITH KEY = \"device\" WHERE \"host\" =~ /^$Host$/",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": false,
         "name": "Disk",
@@ -5365,17 +3520,12 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "All",
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"gateways\" WITH KEY = \"gateway_name\" WHERE \"host\" =~ /^$Host$/ ",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": true,
         "name": "Gateway",
@@ -5395,44 +3545,43 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "vtnet1",
-          "value": "vtnet1"
+          "tags": [],
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
         },
-        "datasource": "$dataSource",
-        "definition": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "label": null,
-        "multi": false,
+        "multi": true,
         "name": "WAN",
-        "options": [],
-        "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
-        "refresh": 1,
-        "regex": "",
+        "options": [
+          {
+            "$$hashKey": "object:755",
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "$$hashKey": "object:756",
+            "selected": false,
+            "text": "igb0",
+            "value": "igb0"
+          }
+        ],
+        "query": "igb0",
         "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "custom"
       },
       {
         "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "ovpns1 + vtnet0 + vtnet0.420 + vtnet0.69",
-          "value": [
-            "ovpns1",
-            "vtnet0",
-            "vtnet0.420",
-            "vtnet0.69"
-          ]
-        },
+        "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": true,
         "name": "LAN_Interfaces",
@@ -5450,15 +3599,12 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"cpu\" WITH KEY = \"cpu\" WHERE \"host\" =~ /^$Host$/ and cpu !~ /cpu-total/",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": true,
         "name": "CPU",
@@ -5476,17 +3622,12 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "All",
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"interface\" WITH KEY = \"name\" WHERE \"host\" =~ /^$Host$/ ",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": true,
         "name": "Interfaces",
@@ -5504,15 +3645,12 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"temperature\" WITH KEY = \"sensor\" WHERE \"host\" =~ /^$Host$/",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": true,
         "name": "Sensor",
@@ -5531,11 +3669,12 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
+      "5s",
       "10s",
       "30s",
       "1m",
@@ -5550,5 +3689,8 @@
   "timezone": "",
   "title": "pfSense System Dashboard",
   "uid": "t_qMZwrWk",
-  "version": 20
+  "variables": {
+    "list": []
+  },
+  "version": 53
 }

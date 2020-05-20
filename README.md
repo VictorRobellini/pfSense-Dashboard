@@ -94,7 +94,7 @@ After writing this up, I realize I need to change this variable name, it's just 
 ### Telegraf
 [Telegraf Config](config/additional_config.conf)
 
-In the [/config](config/additional_config.conf) directory you will find all of the additional telegraf config. In pfSense, under Services -> Telegraf, at the bottom of the page with the teeny tiny text box is where you paste in the included config.
+In the [/config](config/additional_config.conf) directory you will find all of the additional telegraf config. In pfSense, under Services -> Teltegraf, at the bottom of the page with the teeny tiny text box is where you paste in the included config.
 
 I also included the config for Unbound DNS and it's commented out.  I'm not currently using it, but it's fully functional, just uncomment if you want to use it.
 
