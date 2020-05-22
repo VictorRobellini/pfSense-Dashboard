@@ -20,19 +20,19 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.0.0"
+      "version": "6.7.3"
     },
     {
       "type": "panel",
       "id": "grafana-piechart-panel",
       "name": "Pie Chart",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     {
       "type": "panel",
       "id": "grafana-worldmap-panel",
       "name": "Worldmap Panel",
-      "version": "0.2.1"
+      "version": "0.3.2"
     },
     {
       "type": "panel",
@@ -54,14 +54,8 @@
     },
     {
       "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "table-old",
-      "name": "Table (old)",
+      "id": "table",
+      "name": "Table",
       "version": ""
     }
   ],
@@ -82,7 +76,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1590015242726,
+  "iteration": 1590110957206,
   "links": [],
   "panels": [
     {
@@ -111,12 +105,6 @@
       "datasource": "$dataSource",
       "decimals": null,
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -213,34 +201,6 @@
     },
     {
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "displayName": "CPU",
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 70
-              },
-              {
-                "color": "red",
-                "value": 85
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
       "gridPos": {
         "h": 6,
         "w": 2,
@@ -249,17 +209,42 @@
       },
       "id": 8,
       "options": {
-        "orientation": "auto",
-        "reduceOptions": {
+        "fieldOptions": {
           "calcs": [
             "last"
           ],
+          "defaults": {
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 70
+                },
+                {
+                  "color": "red",
+                  "value": 85
+                }
+              ]
+            },
+            "title": "CPU",
+            "unit": "percent"
+          },
+          "overrides": [],
           "values": false
         },
+        "orientation": "auto",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "alias": "CPU Total",
@@ -324,34 +309,6 @@
     },
     {
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 2,
-          "displayName": "Load",
-          "mappings": [],
-          "max": 2.5,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 1
-              },
-              {
-                "color": "red",
-                "value": 1.5
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
       "gridPos": {
         "h": 6,
         "w": 2,
@@ -360,17 +317,42 @@
       },
       "id": 10,
       "options": {
-        "orientation": "auto",
-        "reduceOptions": {
+        "fieldOptions": {
           "calcs": [
             "last"
           ],
+          "defaults": {
+            "decimals": 2,
+            "mappings": [],
+            "max": 2.5,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 1
+                },
+                {
+                  "color": "red",
+                  "value": 1.5
+                }
+              ]
+            },
+            "title": "Load"
+          },
+          "overrides": [],
           "values": false
         },
+        "orientation": "auto",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "alias": "Load",
@@ -423,34 +405,6 @@
     },
     {
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "displayName": "Ram",
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 75
-              },
-              {
-                "color": "red",
-                "value": 85
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
       "gridPos": {
         "h": 6,
         "w": 2,
@@ -459,17 +413,42 @@
       },
       "id": 12,
       "options": {
-        "orientation": "auto",
-        "reduceOptions": {
+        "fieldOptions": {
           "calcs": [
             "last"
           ],
+          "defaults": {
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 75
+                },
+                {
+                  "color": "red",
+                  "value": 85
+                }
+              ]
+            },
+            "title": "Ram",
+            "unit": "percent"
+          },
+          "overrides": [],
           "values": false
         },
+        "orientation": "auto",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "alias": "Ram",
@@ -526,33 +505,6 @@
       "cacheTimeout": null,
       "datasource": "$dataSource",
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "displayName": "${__series.name}",
-          "mappings": [],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#299c46",
-                "value": null
-              },
-              {
-                "color": "rgba(237, 129, 40, 0.89)",
-                "value": 60
-              },
-              {
-                "color": "#d44a3a",
-                "value": 85
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
       "gridPos": {
         "h": 6,
         "w": 4,
@@ -562,17 +514,41 @@
       "id": 223,
       "links": [],
       "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
+        "fieldOptions": {
           "calcs": [
             "lastNotNull"
           ],
+          "defaults": {
+            "mappings": [],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#299c46",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 60
+                },
+                {
+                  "color": "#d44a3a",
+                  "value": 85
+                }
+              ]
+            },
+            "title": "${__series.name}",
+            "unit": "percent"
+          },
+          "overrides": [],
           "values": false
         },
+        "orientation": "horizontal",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "6.7.3",
       "repeatDirection": "h",
       "targets": [
         {
@@ -623,12 +599,6 @@
     {
       "columns": [],
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fontSize": "100%",
       "gridPos": {
         "h": 3,
@@ -736,7 +706,7 @@
       "timeShift": null,
       "title": "PF Information",
       "transform": "table",
-      "type": "table-old"
+      "type": "table"
     },
     {
       "aliasColors": {},
@@ -744,12 +714,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -881,12 +845,6 @@
       ],
       "datasource": "$dataSource",
       "decimals": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -982,12 +940,6 @@
     {
       "columns": [],
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fontSize": "100%",
       "gridPos": {
         "h": 3,
@@ -1107,7 +1059,7 @@
       "timeShift": null,
       "title": "Process Information",
       "transform": "table",
-      "type": "table-old"
+      "type": "table"
     },
     {
       "aliasColors": {},
@@ -1115,12 +1067,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1268,12 +1214,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1401,12 +1341,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1566,12 +1500,6 @@
       "decimals": 0,
       "description": "https://www.reddit.com/r/pfBlockerNG/comments/bu0ms0/pfblockerngtelegrafinfluxdb_ip_block_list/",
       "esMetric": "Count",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "gridPos": {
         "h": 9,
         "w": 7,
@@ -1655,36 +1583,21 @@
     },
     {
       "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "locale"
-        },
-        "overrides": []
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 3,
@@ -1695,25 +1608,40 @@
       "id": 27,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ]
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "values": false
+        {
+          "name": "range to text",
+          "value": 2
         }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
       },
-      "pluginVersion": "7.0.0",
+      "tableColumn": "",
       "targets": [
         {
           "groupBy": [],
@@ -1747,10 +1675,20 @@
           ]
         }
       ],
+      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "pfBlocker - DNS - Total Domains Blocked",
-      "type": "stat"
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     },
     {
       "aliasColors": {},
@@ -1762,12 +1700,6 @@
       },
       "datasource": "${DS_PFSENSE}",
       "decimals": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fontSize": "80%",
       "format": "locale",
       "gridPos": {
@@ -1850,12 +1782,6 @@
       },
       "datasource": "${DS_PFSENSE}",
       "decimals": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fontSize": "80%",
       "format": "locale",
       "gridPos": {
@@ -1930,37 +1856,22 @@
     },
     {
       "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 0,
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "locale"
-        },
-        "overrides": []
+      "decimals": 0,
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 3,
@@ -1971,25 +1882,40 @@
       "id": 162,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ]
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
         },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "values": false
+        {
+          "name": "range to text",
+          "value": 2
         }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": null
       },
-      "pluginVersion": "7.0.0",
+      "tableColumn": "",
       "targets": [
         {
           "groupBy": [],
@@ -2023,10 +1949,20 @@
           ]
         }
       ],
+      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "pfBlocker - IP - Total IPs Blocked",
-      "type": "stat"
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     },
     {
       "collapsed": false,
@@ -2049,12 +1985,6 @@
       "dashes": false,
       "datasource": "${DS_PFSENSE}",
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2196,12 +2126,6 @@
       "columns": [],
       "datasource": "${DS_PFSENSE}",
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fontSize": "100%",
       "gridPos": {
         "h": 8,
@@ -2366,7 +2290,7 @@
       "timeShift": null,
       "title": "Interface summary",
       "transform": "table",
-      "type": "table-old"
+      "type": "table"
     },
     {
       "collapsed": false,
@@ -2389,12 +2313,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2601,12 +2519,6 @@
       "dashes": false,
       "datasource": "$dataSource",
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2924,12 +2836,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PFSENSE}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -3156,12 +3062,6 @@
       "dashes": false,
       "datasource": "$dataSource",
       "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -3504,8 +3404,8 @@
       }
     }
   ],
-  "refresh": "30m",
-  "schemaVersion": 25,
+  "refresh": "30s",
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "pfsense",
@@ -3527,7 +3427,6 @@
         "name": "dataSource",
         "options": [],
         "query": "influxdb",
-        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3540,6 +3439,7 @@
         "definition": "SHOW TAG VALUES FROM \"pf\" WITH KEY = \"host\"",
         "hide": 0,
         "includeAll": false,
+        "index": -1,
         "label": "pfSense",
         "multi": false,
         "name": "Host",
@@ -3562,6 +3462,7 @@
         "definition": "SHOW TAG VALUES FROM \"disk\" WITH KEY = \"device\" WHERE \"host\" =~ /^$Host$/",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": false,
         "name": "Disk",
@@ -3584,6 +3485,7 @@
         "definition": "SHOW TAG VALUES FROM \"gateways\" WITH KEY = \"gateway_name\" WHERE \"host\" =~ /^$Host$/ ",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": true,
         "name": "Gateway",
@@ -3605,9 +3507,10 @@
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
+        "index": -1,
         "label": null,
-        "multi": false,
+        "multi": true,
         "name": "WAN",
         "options": [],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
@@ -3628,13 +3531,14 @@
         "definition": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": true,
         "name": "LAN_Interfaces",
         "options": [],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
         "refresh": 1,
-        "regex": "/^(?!igb0$|igb1|igb3|igb2$)/",
+        "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
@@ -3650,6 +3554,7 @@
         "definition": "SHOW TAG VALUES FROM \"cpu\" WITH KEY = \"cpu\" WHERE \"host\" =~ /^$Host$/ and cpu !~ /cpu-total/",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": true,
         "name": "CPU",
@@ -3672,6 +3577,7 @@
         "definition": "SHOW TAG VALUES FROM \"interface\" WITH KEY = \"name\" WHERE \"host\" =~ /^$Host$/ ",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": true,
         "name": "Interfaces",
@@ -3694,6 +3600,7 @@
         "definition": "SHOW TAG VALUES FROM \"temperature\" WITH KEY = \"sensor\" WHERE \"host\" =~ /^$Host$/",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": true,
         "name": "Sensor",
@@ -3712,11 +3619,12 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
+      "5s",
       "10s",
       "30s",
       "1m",
@@ -3731,5 +3639,8 @@
   "timezone": "",
   "title": "pfSense System Dashboard",
   "uid": "t_qMZwrWk",
-  "version": 20
+  "variables": {
+    "list": []
+  },
+  "version": 4
 }
