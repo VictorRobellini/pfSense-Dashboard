@@ -26,13 +26,13 @@
       "type": "panel",
       "id": "grafana-piechart-panel",
       "name": "Pie Chart",
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     {
       "type": "panel",
       "id": "grafana-worldmap-panel",
       "name": "Worldmap Panel",
-      "version": "0.2.1"
+      "version": "0.3.2"
     },
     {
       "type": "panel",
@@ -50,6 +50,12 @@
       "type": "panel",
       "id": "singlestat",
       "name": "Singlestat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
       "version": ""
     },
     {
@@ -77,7 +83,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1588523576991,
+  "iteration": 1597295054833,
   "links": [],
   "panels": [
     {
@@ -2004,13 +2010,13 @@
     },
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB}",
       "description": "",
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 1,
       "gridPos": {
         "h": 8,
         "w": 15,
@@ -2065,7 +2071,7 @@
             },
             {
               "params": [
-                "linear"
+                "null"
               ],
               "type": "fill"
             }
@@ -2127,13 +2133,14 @@
           "$$hashKey": "object:304",
           "format": "µs",
           "label": "",
-          "logBase": 2,
+          "logBase": 10,
           "max": null,
           "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:305",
+          "decimals": null,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2349,7 +2356,7 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 11,
         "x": 0,
         "y": 33
       },
@@ -2368,7 +2375,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
         "dataLinks": []
       },
@@ -2378,8 +2385,221 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": true,
+      "stack": false,
       "steppedLine": false,
+      "targets": [
+        {
+          "alias": "WAN Traffic Recv",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "net",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(mean(\"bytes_recv\"), 1s)  *-1 FROM \"autogen\".\"net\" WHERE (\"host\" = 'pfSense-home-master.home' AND \"interface\" = 'vtnet0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "bytes_recv"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "interface",
+              "operator": "=~",
+              "value": "/^$WAN$/"
+            }
+          ]
+        },
+        {
+          "alias": "WAN Traffic Sent",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "net",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" =~ /^$Host$/ AND \"interface\" =~ /^$WAN$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "bytes_sent"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "interface",
+              "operator": "=~",
+              "value": "/^$WAN$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "WAN Traffic - $WAN (Bytes/sec)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:842",
+          "decimals": 2,
+          "format": "Bps",
+          "label": "",
+          "logBase": 10,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:843",
+          "decimals": 2,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_INFLUXDB}",
+      "gridPos": {
+        "h": 8,
+        "w": 3,
+        "x": 11,
+        "y": 33
+      },
+      "id": 247,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "defaults": {
+            "decimals": 2,
+            "mappings": [
+              {
+                "$$hashKey": "object:4561",
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "bps"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "6.7.2",
+      "repeat": "WAN",
+      "repeatDirection": "v",
       "targets": [
         {
           "alias": "WAN Traffic Recv",
@@ -2485,6 +2705,12 @@
                   "1s"
                 ],
                 "type": "derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
               }
             ]
           ],
@@ -2503,48 +2729,10 @@
           ]
         }
       ],
-      "thresholds": [],
       "timeFrom": null,
-      "timeRegions": [],
       "timeShift": null,
-      "title": "WAN Traffic - $WAN",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:842",
-          "format": "bps",
-          "label": "",
-          "logBase": 2,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:843",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "title": "WAN Traffic - $WAN (Bits/sec)",
+      "type": "stat"
     },
     {
       "aliasColors": {},
@@ -2557,8 +2745,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
+        "w": 10,
+        "x": 14,
         "y": 33
       },
       "hiddenSeries": false,
@@ -2830,15 +3018,17 @@
       "yaxes": [
         {
           "$$hashKey": "object:1433",
+          "decimals": 2,
           "format": "short",
           "label": null,
-          "logBase": 2,
+          "logBase": 10,
           "max": null,
           "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:1434",
+          "decimals": 2,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2863,7 +3053,7 @@
       },
       "id": 43,
       "panels": [],
-      "title": "Lan Interfaces",
+      "title": "LAN Interfaces",
       "type": "row"
     },
     {
@@ -2876,7 +3066,7 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 11,
         "x": 0,
         "y": 42
       },
@@ -2956,12 +3146,6 @@
                   "1s"
                 ],
                 "type": "derivative"
-              },
-              {
-                "params": [
-                  "*8"
-                ],
-                "type": "math"
               }
             ]
           ],
@@ -3026,6 +3210,225 @@
                   "1s"
                 ],
                 "type": "derivative"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "interface",
+              "operator": "=~",
+              "value": "/^$LAN_Interfaces$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "LAN Traffic - $LAN_Interfaces (Bytes/sec)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1802",
+          "decimals": 2,
+          "format": "Bps",
+          "label": "",
+          "logBase": 10,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1803",
+          "decimals": 2,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_INFLUXDB}",
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 11,
+        "y": 42
+      },
+      "id": 248,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "defaults": {
+            "decimals": 2,
+            "mappings": [
+              {
+                "$$hashKey": "object:4561",
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "bps"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "6.7.2",
+      "repeat": "LAN_Interfaces",
+      "repeatDirection": "v",
+      "targets": [
+        {
+          "alias": "LAN Traffic Recv",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "net",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(mean(\"bytes_recv\"), 1s)  *-1 FROM \"autogen\".\"net\" WHERE (\"host\" = 'pfSense-home-master.home' AND \"interface\" = 'vtnet0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "bytes_recv"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "interface",
+              "operator": "=~",
+              "value": "/^$LAN_Interfaces$/"
+            }
+          ]
+        },
+        {
+          "alias": "LAN Traffic Sent",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "net",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" =~ /^$Host$/ AND \"interface\" =~ /^$WAN$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "bytes_sent"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "derivative"
               },
               {
                 "params": [
@@ -3050,48 +3453,10 @@
           ]
         }
       ],
-      "thresholds": [],
       "timeFrom": null,
-      "timeRegions": [],
       "timeShift": null,
-      "title": "LAN Traffic - $LAN_Interfaces",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:1802",
-          "format": "bps",
-          "label": "",
-          "logBase": 2,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:1803",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "title": "LAN Traffic - $LAN_Interfaces (Bits/sec)",
+      "type": "stat"
     },
     {
       "aliasColors": {},
@@ -3104,8 +3469,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 12,
-        "x": 12,
+        "w": 10,
+        "x": 14,
         "y": 42
       },
       "hiddenSeries": false,
@@ -3423,7 +3788,7 @@
           "$$hashKey": "object:1249",
           "format": "short",
           "label": null,
-          "logBase": 2,
+          "logBase": 10,
           "max": null,
           "min": null,
           "show": true
@@ -3444,7 +3809,7 @@
       }
     }
   ],
-  "refresh": "30s",
+  "refresh": "5s",
   "schemaVersion": 22,
   "style": "dark",
   "tags": [
@@ -3582,7 +3947,7 @@
         "hide": 0,
         "includeAll": true,
         "index": -1,
-        "label": null,
+        "label": "LAN",
         "multi": true,
         "name": "LAN_Interfaces",
         "options": [],
@@ -3692,5 +4057,5 @@
   "variables": {
     "list": []
   },
-  "version": 53
+  "version": 42
 }
