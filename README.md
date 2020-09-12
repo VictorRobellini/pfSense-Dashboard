@@ -110,6 +110,9 @@ I also included a wrapper script for Unbound DNS.  I'm not currently using it, b
 
 ### Telegraf Plugins
 
+- You can run most plugins from a shell/ssh session to verify the output.
+- If you're copying from a windows system, make sure the [CRLF is correct](https://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/)
+
 To troubleshoot plugins, add the following lines to the agent block in /usr/local/etc/telegraf.conf and send a HUP to the telegraf pid. You're going to need to do this from a ssh shell. One you update the config you are going to need to tell telegraf to read the new configs. If you restart telegraf from pfSense, this will not work since it will overwrite your changes.
 
 #### Telegraf Config
