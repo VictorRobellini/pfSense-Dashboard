@@ -21,8 +21,8 @@
 
 ## Running on
 
-    Grafana 6.7.2
-    Influxdb 1.7.10
+    Grafana 7.4.3
+    Influxdb 1.8.3
 
 ### docker-compose example with persistent storage
 ```docker-compose
