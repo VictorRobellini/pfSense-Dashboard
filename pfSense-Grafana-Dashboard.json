@@ -1,14 +1,5 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_INFLUXDB",
-      "label": "InfluxDB",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    }
-  ],
+  "__inputs": [],
   "__requires": [
     {
       "type": "panel",
@@ -20,13 +11,13 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.7.2"
+      "version": "7.4.3"
     },
     {
       "type": "panel",
       "id": "grafana-piechart-panel",
       "name": "Pie Chart",
-      "version": "1.5.0"
+      "version": "1.6.1"
     },
     {
       "type": "panel",
@@ -60,15 +51,14 @@
     },
     {
       "type": "panel",
-      "id": "table",
-      "name": "Table",
+      "id": "table-old",
+      "name": "Table (old)",
       "version": ""
     }
   ],
   "annotations": {
     "list": [
       {
-        "$$hashKey": "object:327",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -83,12 +73,12 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1597295054833,
+  "iteration": 1614900525906,
   "links": [],
   "panels": [
     {
       "collapsed": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -112,6 +102,12 @@
       "datasource": "$dataSource",
       "decimals": null,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -133,12 +129,10 @@
       "mappingType": 1,
       "mappingTypes": [
         {
-          "$$hashKey": "object:971",
           "name": "value to text",
           "value": 1
         },
         {
-          "$$hashKey": "object:972",
           "name": "range to text",
           "value": 2
         }
@@ -201,7 +195,6 @@
       "valueFontSize": "80%",
       "valueMaps": [
         {
-          "$$hashKey": "object:974",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -210,7 +203,35 @@
       "valueName": "current"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "CPU",
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 6,
         "w": 2,
@@ -219,42 +240,19 @@
       },
       "id": 8,
       "options": {
-        "fieldOptions": {
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "mappings": [],
-            "max": 100,
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 70
-                },
-                {
-                  "color": "red",
-                  "value": 85
-                }
-              ]
-            },
-            "title": "CPU",
-            "unit": "percent"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "orientation": "auto",
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "text": {}
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.4.3",
       "targets": [
         {
           "alias": "CPU Total",
@@ -318,273 +316,107 @@
       "type": "gauge"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
+      "aliasColors": {},
+      "bars": false,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$dataSource",
+      "decimals": 2,
+      "fieldConfig": {
+        "defaults": {
+          "color": {},
+          "custom": {},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
-        "w": 2,
+        "w": 8,
         "x": 4,
         "y": 1
       },
-      "id": 10,
-      "options": {
-        "fieldOptions": {
-          "calcs": [
-            "last"
-          ],
-          "defaults": {
-            "decimals": 2,
-            "mappings": [],
-            "max": 2.5,
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 1
-                },
-                {
-                  "color": "red",
-                  "value": 1.5
-                }
-              ]
-            },
-            "title": "Load"
-          },
-          "overrides": [],
-          "values": false
-        },
-        "orientation": "auto",
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+      "hiddenSeries": false,
+      "id": 6,
+      "interval": null,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "avg",
+        "sortDesc": false,
+        "total": false,
+        "values": true
       },
-      "pluginVersion": "6.7.2",
-      "targets": [
-        {
-          "alias": "Load",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "system",
-          "orderByTime": "ASC",
-          "policy": "autogen",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "load1"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "System Load",
-      "type": "gauge"
-    },
-    {
-      "datasource": "${DS_INFLUXDB}",
-      "gridPos": {
-        "h": 6,
-        "w": 2,
-        "x": 6,
-        "y": 1
-      },
-      "id": 12,
-      "options": {
-        "fieldOptions": {
-          "calcs": [
-            "last"
-          ],
-          "defaults": {
-            "mappings": [],
-            "max": 100,
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 75
-                },
-                {
-                  "color": "red",
-                  "value": 85
-                }
-              ]
-            },
-            "title": "Ram",
-            "unit": "percent"
-          },
-          "overrides": [],
-          "values": false
-        },
-        "orientation": "auto",
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "6.7.2",
-      "targets": [
-        {
-          "alias": "Ram",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "mem",
-          "orderByTime": "ASC",
-          "policy": "autogen",
-          "query": "SELECT mean(\"value\") FROM \"measurement\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "used_percent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Memory Utilization",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "$dataSource",
-      "description": "",
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 8,
-        "y": 1
-      },
-      "id": 223,
+      "lines": true,
+      "linewidth": 1,
       "links": [],
+      "nullPointMode": "null",
       "options": {
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "defaults": {
-            "mappings": [],
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "#299c46",
-                  "value": null
-                },
-                {
-                  "color": "rgba(237, 129, 40, 0.89)",
-                  "value": 60
-                },
-                {
-                  "color": "#d44a3a",
-                  "value": 85
-                }
-              ]
-            },
-            "title": "${__series.name}",
-            "unit": "percent"
-          },
-          "overrides": [],
-          "values": false
-        },
-        "orientation": "horizontal",
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "alertThreshold": true
       },
-      "pluginVersion": "6.7.2",
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
       "repeatDirection": "h",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": true,
       "targets": [
         {
-          "alias": "$tag_device",
+          "alias": "$tag_cpu",
           "groupBy": [
             {
               "params": [
-                "device"
+                "10s"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "cpu"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
             }
           ],
-          "measurement": "disk",
+          "hide": false,
+          "measurement": "cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"used_percent\" FROM \"disk\" WHERE (\"host\" =~ /^$Host$/ AND \"path\" = '/var/run' AND \"device\" =~ /^$Disk$/) AND $timeFilter GROUP BY \"device\"",
-          "rawQuery": false,
-          "refId": "A",
+          "refId": "B",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "used_percent"
+                  "usage_system"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
               }
             ]
           ],
@@ -596,210 +428,9 @@
             },
             {
               "condition": "AND",
-              "key": "device",
-              "operator": "!=",
-              "value": "devfs"
-            }
-          ]
-        }
-      ],
-      "title": "Disk Utilization",
-      "type": "gauge"
-    },
-    {
-      "columns": [],
-      "datasource": "${DS_INFLUXDB}",
-      "fontSize": "100%",
-      "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 12,
-        "y": 1
-      },
-      "id": 220,
-      "pageSize": null,
-      "showHeader": true,
-      "sort": {
-        "col": 6,
-        "desc": false
-      },
-      "styles": [
-        {
-          "$$hashKey": "object:838",
-          "alias": "Time",
-          "align": "auto",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "hidden"
-        },
-        {
-          "$$hashKey": "object:839",
-          "alias": "",
-          "align": "right",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "decimals": 0,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "locale"
-        }
-      ],
-      "targets": [
-        {
-          "groupBy": [],
-          "measurement": "pf",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "table",
-          "select": [
-            [
-              {
-                "params": [
-                  "match"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "Match"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "state-mismatch"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "State Mismatch"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "state-insert"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "State Insert"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
+              "key": "cpu",
               "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "PF Information",
-      "transform": "table",
-      "type": "table"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 7,
-        "x": 17,
-        "y": 1
-      },
-      "hiddenSeries": false,
-      "id": 18,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "Load",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "previous"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "system",
-          "orderByTime": "ASC",
-          "policy": "autogen",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "load1"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
+              "value": "/^$CPU$/"
             }
           ]
         }
@@ -808,10 +439,10 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Load",
+      "title": "CPU",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -824,15 +455,16 @@
       },
       "yaxes": [
         {
-          "decimals": 1,
-          "format": "none",
-          "label": "",
+          "decimals": 0,
+          "format": "percent",
+          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "100",
+          "min": "0",
           "show": true
         },
         {
+          "decimals": 2,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -847,120 +479,20 @@
       }
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": "$dataSource",
-      "decimals": null,
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 0,
-        "y": 4
-      },
-      "hideTimeOverride": true,
-      "id": 45,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "$$hashKey": "object:345",
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "$$hashKey": "object:346",
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "alias": "Load 15m",
-          "groupBy": [],
-          "measurement": "system",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "table",
-          "select": [
-            [
-              {
-                "params": [
-                  "uptime_format"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": ".7,1.5",
-      "timeFrom": "30s",
-      "title": "Uptime",
-      "type": "singlestat",
-      "valueFontSize": "50%",
-      "valueMaps": [
-        {
-          "$$hashKey": "object:348",
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
       "columns": [],
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "100%",
       "gridPos": {
         "h": 3,
         "w": 5,
         "x": 12,
-        "y": 4
+        "y": 1
       },
       "id": 219,
       "pageSize": null,
@@ -971,7 +503,6 @@
       },
       "styles": [
         {
-          "$$hashKey": "object:838",
           "alias": "Time",
           "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
@@ -979,7 +510,6 @@
           "type": "hidden"
         },
         {
-          "$$hashKey": "object:839",
           "alias": "",
           "align": "right",
           "colorMode": null,
@@ -1076,30 +606,37 @@
       "timeShift": null,
       "title": "Process Information",
       "transform": "table",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 6,
-        "w": 8,
-        "x": 0,
-        "y": 7
+        "w": 7,
+        "x": 17,
+        "y": 1
       },
       "hiddenSeries": false,
-      "id": 6,
+      "id": 18,
       "legend": {
         "alignAsTable": true,
         "avg": true,
         "current": true,
         "max": true,
-        "min": true,
+        "min": false,
         "rightSide": true,
         "show": true,
         "total": false,
@@ -1109,42 +646,36 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "h",
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "$tag_cpu",
+          "alias": "$col",
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "10s"
               ],
               "type": "time"
             },
             {
               "params": [
-                "cpu"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "none"
+                "null"
               ],
               "type": "fill"
             }
           ],
-          "measurement": "cpu",
+          "hide": false,
+          "measurement": "system",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1153,7 +684,7 @@
             [
               {
                 "params": [
-                  "usage_idle"
+                  "load1"
                 ],
                 "type": "field"
               },
@@ -1163,9 +694,45 @@
               },
               {
                 "params": [
-                  "* -1 + 100"
+                  "load1"
                 ],
-                "type": "math"
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "load5"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "load5"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "load15"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "load15"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -1174,12 +741,6 @@
               "key": "host",
               "operator": "=~",
               "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "cpu",
-              "operator": "=~",
-              "value": "/^$CPU$/"
             }
           ]
         }
@@ -1188,7 +749,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "CPU",
+      "title": "Load",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1204,7 +765,383 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:15942",
+          "decimals": 1,
+          "format": "none",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$dataSource",
+      "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 0,
+        "y": 4
+      },
+      "hideTimeOverride": true,
+      "id": 45,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "alias": "Load 15m",
+          "groupBy": [],
+          "measurement": "system",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "uptime_format"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": ".7,1.5",
+      "timeFrom": "30s",
+      "title": "Uptime",
+      "type": "singlestat",
+      "valueFontSize": "50%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "columns": [],
+      "datasource": "$dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 12,
+        "y": 4
+      },
+      "id": 220,
+      "pageSize": null,
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "align": "auto",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "hidden"
+        },
+        {
+          "alias": "",
+          "align": "right",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 0,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "locale"
+        }
+      ],
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "pf",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "match"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Match"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "state-mismatch"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "State Mismatch"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "state-insert"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "State Insert"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "PF Information",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$dataSource",
+      "decimals": 2,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {},
+          "custom": {},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 223,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatDirection": "h",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_path",
+          "groupBy": [
+            {
+              "params": [
+                "path"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "disk",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"used_percent\" FROM \"disk\" WHERE (\"host\" =~ /^$Host$/ AND \"path\" = '/var/run' AND \"device\" =~ /^$Disk$/) AND $timeFilter GROUP BY \"device\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "used_percent"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "device",
+              "operator": "!=",
+              "value": "devfs"
+            },
+            {
+              "condition": "AND",
+              "key": "device",
+              "operator": "=~",
+              "value": "/^$Disk$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Disk Utilization",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -1213,7 +1150,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:15943",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1232,12 +1168,24 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "color": {},
+          "custom": {},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 6,
-        "w": 6,
+        "w": 8,
         "x": 8,
         "y": 7
       },
@@ -1247,8 +1195,8 @@
         "alignAsTable": true,
         "avg": true,
         "current": true,
-        "max": false,
-        "min": false,
+        "max": true,
+        "min": true,
         "rightSide": true,
         "show": true,
         "total": false,
@@ -1258,9 +1206,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1270,21 +1219,22 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Ram",
+          "alias": "$col",
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "10s"
               ],
               "type": "time"
             },
             {
               "params": [
-                "previous"
+                "null"
               ],
               "type": "fill"
             }
           ],
+          "hide": false,
           "measurement": "mem",
           "orderByTime": "ASC",
           "policy": "autogen",
@@ -1300,7 +1250,62 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Ram Used"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            }
+          ]
+        },
+        {
+          "alias": "$col",
+          "groupBy": [
+            {
+              "params": [
+                "10s"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "swap",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "used_percent"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "SWAP Used"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -1333,7 +1338,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:473",
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -1342,7 +1346,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:474",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1361,13 +1364,20 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 6,
-        "w": 10,
-        "x": 14,
+        "w": 8,
+        "x": 16,
         "y": 7
       },
       "hiddenSeries": false,
@@ -1387,9 +1397,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1403,7 +1414,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "10s"
               ],
               "type": "time"
             },
@@ -1415,7 +1426,7 @@
             },
             {
               "params": [
-                "linear"
+                "null"
               ],
               "type": "fill"
             }
@@ -1474,7 +1485,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:11067",
           "format": "celsius",
           "label": null,
           "logBase": 1,
@@ -1483,7 +1493,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:11068",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1499,7 +1508,7 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1523,6 +1532,12 @@
       "decimals": 0,
       "description": "https://www.reddit.com/r/pfBlockerNG/comments/bu0ms0/pfblockerngtelegrafinfluxdb_ip_block_list/",
       "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 9,
         "w": 7,
@@ -1613,7 +1628,13 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -1634,12 +1655,10 @@
       "mappingType": 1,
       "mappingTypes": [
         {
-          "$$hashKey": "object:1171",
           "name": "value to text",
           "value": 1
         },
         {
-          "$$hashKey": "object:1172",
           "name": "range to text",
           "value": 2
         }
@@ -1708,7 +1727,6 @@
       "valueFontSize": "80%",
       "valueMaps": [
         {
-          "$$hashKey": "object:1174",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -1724,8 +1742,14 @@
         "label": "Others",
         "threshold": 0
       },
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "80%",
       "format": "locale",
       "gridPos": {
@@ -1750,7 +1774,7 @@
       "maxDataPoints": 3,
       "nullPointMode": "connected",
       "pieType": "pie",
-      "strokeWidth": ".5",
+      "strokeWidth": ".2",
       "targets": [
         {
           "alias": "[[tag_source]]",
@@ -1806,8 +1830,14 @@
         "label": "Others",
         "threshold": 0
       },
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "80%",
       "format": "locale",
       "gridPos": {
@@ -1832,7 +1862,7 @@
       "maxDataPoints": 3,
       "nullPointMode": "connected",
       "pieType": "pie",
-      "strokeWidth": ".5",
+      "strokeWidth": ".2",
       "targets": [
         {
           "alias": "[[tag_destination]]",
@@ -1889,8 +1919,14 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -1911,12 +1947,10 @@
       "mappingType": 1,
       "mappingTypes": [
         {
-          "$$hashKey": "object:194",
           "name": "value to text",
           "value": 1
         },
         {
-          "$$hashKey": "object:195",
           "name": "range to text",
           "value": 2
         }
@@ -1930,7 +1964,6 @@
       "prefixFontSize": "50%",
       "rangeMaps": [
         {
-          "$$hashKey": "object:225",
           "from": "null",
           "text": "N/A",
           "to": "null"
@@ -1986,7 +2019,6 @@
       "valueFontSize": "80%",
       "valueMaps": [
         {
-          "$$hashKey": "object:197",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -1996,7 +2028,7 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2010,16 +2042,23 @@
     },
     {
       "aliasColors": {},
-      "bars": true,
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
-      "fillGradient": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 15,
+        "w": 7,
         "x": 0,
         "y": 24
       },
@@ -2031,7 +2070,7 @@
         "current": true,
         "max": true,
         "min": true,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "sideWidth": null,
         "total": false,
@@ -2041,9 +2080,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2059,7 +2099,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "10s"
               ],
               "type": "time"
             },
@@ -2130,7 +2170,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:304",
           "format": "µs",
           "label": "",
           "logBase": 10,
@@ -2139,7 +2178,158 @@
           "show": true
         },
         {
-          "$$hashKey": "object:305",
+          "decimals": null,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$dataSource",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 7,
+        "y": 24
+      },
+      "hiddenSeries": false,
+      "id": 487,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": null,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatDirection": "h",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_gateway_name",
+          "groupBy": [
+            {
+              "params": [
+                "10s"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "gateway_name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "gateways",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "loss"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "gateway_name",
+              "operator": "=~",
+              "value": "/^$Gateway$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Gateway Loss - $Gateway ",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "percent",
+          "label": "",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
           "decimals": null,
           "format": "short",
           "label": null,
@@ -2157,13 +2347,19 @@
     {
       "cacheTimeout": null,
       "columns": [],
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "100%",
       "gridPos": {
         "h": 8,
-        "w": 9,
-        "x": 15,
+        "w": 10,
+        "x": 14,
         "y": 24
       },
       "id": 194,
@@ -2173,12 +2369,11 @@
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": 2,
+        "col": 1,
         "desc": false
       },
       "styles": [
         {
-          "$$hashKey": "object:7480",
           "alias": "Time",
           "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
@@ -2187,7 +2382,6 @@
           "type": "hidden"
         },
         {
-          "$$hashKey": "object:7481",
           "alias": "",
           "align": "auto",
           "colorMode": "value",
@@ -2208,24 +2402,218 @@
           "unit": "short",
           "valueMaps": [
             {
-              "$$hashKey": "object:7515",
               "text": "DOWN",
               "value": "0"
             },
             {
-              "$$hashKey": "object:7516",
               "text": "UP",
               "value": "1"
             },
             {
-              "$$hashKey": "object:7517",
               "text": "UNKNOWN",
               "value": "2"
             }
           ]
         },
         {
-          "$$hashKey": "object:470",
+          "alias": "Interface",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "name",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            }
+          ],
+          "limit": "1",
+          "measurement": "interface",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "friendlyname"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "pfSense Label"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "ip_address"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "IP Address"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "mac_address"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "Physical Address"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "status"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Status"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Interface summary",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "collapsed": false,
+      "datasource": "$dataSource",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 14,
+      "panels": [],
+      "repeat": "WAN",
+      "title": "WAN - $WAN",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "columns": [],
+      "datasource": "$dataSource",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 33
+      },
+      "id": 372,
+      "links": [],
+      "pageSize": null,
+      "pluginVersion": "6.1.6",
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 2,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "align": "auto",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "link": false,
+          "pattern": "Time",
+          "type": "hidden"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": "value",
+          "colors": [
+            "#FADE2A",
+            "#F2495C",
+            "#73BF69"
+          ],
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Status",
+          "thresholds": [
+            "0",
+            "1",
+            "2"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "DOWN",
+              "value": "0"
+            },
+            {
+              "text": "UP",
+              "value": "1"
+            },
+            {
+              "text": "UNKNOWN",
+              "value": "2"
+            }
+          ]
+        },
+        {
           "alias": "Interface",
           "align": "auto",
           "colorMode": null,
@@ -2322,43 +2710,54 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$WAN$/"
+            }
+          ]
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Interface summary",
       "transform": "table",
-      "type": "table"
-    },
-    {
-      "collapsed": false,
-      "datasource": "${DS_INFLUXDB}",
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 32
-      },
-      "id": 14,
-      "panels": [],
-      "repeat": "WAN",
-      "title": "WAN - $WAN",
-      "type": "row"
+      "transformations": [
+        {
+          "id": "seriesToColumns",
+          "options": {}
+        }
+      ],
+      "type": "table-old"
     },
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
+      "decimals": 2,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 11,
+        "w": 9,
         "x": 0,
-        "y": 33
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 2,
@@ -2370,6 +2769,8 @@
         "min": false,
         "rightSide": false,
         "show": true,
+        "sort": "max",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -2377,9 +2778,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2389,13 +2791,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "WAN Traffic Recv",
+          "alias": "$tag_interface - $col",
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "10s"
               ],
               "type": "time"
+            },
+            {
+              "params": [
+                "interface"
+              ],
+              "type": "tag"
             },
             {
               "params": [
@@ -2421,55 +2829,27 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "first"
               },
               {
                 "params": [
                   "1s"
                 ],
                 "type": "derivative"
+              },
+              {
+                "params": [
+                  "* count(\"bytes_recv\") / count(\"bytes_recv\")"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Bytes_Recv"
+                ],
+                "type": "alias"
               }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$WAN$/"
-            }
-          ]
-        },
-        {
-          "alias": "WAN Traffic Sent",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" =~ /^$Host$/ AND \"interface\" =~ /^$WAN$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
+            ],
             [
               {
                 "params": [
@@ -2479,13 +2859,25 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "first"
               },
               {
                 "params": [
                   "1s"
                 ],
                 "type": "derivative"
+              },
+              {
+                "params": [
+                  "* count(\"bytes_sent\") / count(\"bytes_sent\")"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Bytes_Sent"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -2524,17 +2916,17 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:842",
+          "$$hashKey": "object:6721",
           "decimals": 2,
           "format": "Bps",
           "label": "",
-          "logBase": 10,
+          "logBase": 2,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "$$hashKey": "object:843",
+          "$$hashKey": "object:6722",
           "decimals": 2,
           "format": "short",
           "label": null,
@@ -2551,68 +2943,78 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bps"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 8,
         "w": 3,
-        "x": 11,
-        "y": 33
+        "x": 9,
+        "y": 36
       },
       "id": 247,
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "decimals": 2,
-            "mappings": [
-              {
-                "$$hashKey": "object:4561",
-                "id": 0,
-                "op": "=",
-                "text": "N/A",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "bps"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.4.3",
       "repeat": "WAN",
       "repeatDirection": "v",
       "targets": [
         {
-          "alias": "WAN Traffic Recv",
+          "alias": "$tag_interface - $col",
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "10s"
               ],
               "type": "time"
             },
             {
               "params": [
-                "null"
+                "interface"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "none"
               ],
               "type": "fill"
             }
@@ -2634,7 +3036,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "first"
               },
               {
                 "params": [
@@ -2644,51 +3046,17 @@
               },
               {
                 "params": [
-                  "*8"
+                  "* count(\"bytes_recv\") / count(\"bytes_recv\") * 8"
                 ],
                 "type": "math"
+              },
+              {
+                "params": [
+                  "Bits_Recv"
+                ],
+                "type": "alias"
               }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$WAN$/"
-            }
-          ]
-        },
-        {
-          "alias": "WAN Traffic Sent",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" =~ /^$Host$/ AND \"interface\" =~ /^$WAN$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
+            ],
             [
               {
                 "params": [
@@ -2698,7 +3066,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "first"
               },
               {
                 "params": [
@@ -2708,9 +3076,15 @@
               },
               {
                 "params": [
-                  "*8"
+                  "* count(\"bytes_sent\") / count(\"bytes_sent\") * 8"
                 ],
                 "type": "math"
+              },
+              {
+                "params": [
+                  "Bits_Sent"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -2735,22 +3109,180 @@
       "type": "stat"
     },
     {
+      "cacheTimeout": null,
+      "datasource": "$dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 3,
+        "x": 12,
+        "y": 36
+      },
+      "hideTimeOverride": true,
+      "id": 296,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.4.3",
+      "repeat": "WAN",
+      "repeatDirection": "v",
+      "targets": [
+        {
+          "alias": "$tag_interface - $col - This Month",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "interface"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "net",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "bytes_recv"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "first"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
+              },
+              {
+                "params": [
+                  "Bytes_Recv"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "bytes_sent"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "first"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
+              },
+              {
+                "params": [
+                  "Bytes_Sent"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "interface",
+              "operator": "=~",
+              "value": "/^$WAN$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "now/M",
+      "timeShift": null,
+      "title": "WAN $WAN",
+      "type": "stat"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "$dataSource",
+      "decimals": 2,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 10,
-        "x": 14,
-        "y": 33
+        "w": 9,
+        "x": 15,
+        "y": 36
       },
       "hiddenSeries": false,
-      "id": 37,
+      "id": 322,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -2769,156 +3301,42 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
+      "repeat": "WAN",
+      "repeatDirection": "v",
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Drop In",
-          "groupBy": [],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"drop_in\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_in"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
+          "alias": "$tag_interface - $col",
+          "groupBy": [
             {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$Interface$/"
+              "params": [
+                "10s"
+              ],
+              "type": "time"
             },
             {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "Drop Out",
-          "groupBy": [],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"drop_out\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_out"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$Interface$/"
+              "params": [
+                "interface"
+              ],
+              "type": "tag"
             },
             {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
+              "params": [
+                "null"
+              ],
+              "type": "fill"
             }
-          ]
-        },
-        {
-          "alias": "Err In",
-          "groupBy": [],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"err_in\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "err_in"
-                ],
-                "type": "field"
-              }
-            ]
           ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$Interface$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "Err Out",
-          "groupBy": [],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"err_out\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "err_out"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$Interface$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "Pckts Recv",
-          "groupBy": [],
           "measurement": "net",
           "orderByTime": "ASC",
           "policy": "default",
@@ -2935,10 +3353,56 @@
                 "type": "field"
               },
               {
+                "params": [],
+                "type": "first"
+              },
+              {
                 "params": [
                   "1s"
                 ],
                 "type": "derivative"
+              },
+              {
+                "params": [
+                  "* count(\"packets_recv\") / count(\"packets_recv\")"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Packets_Recv"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "packets_sent"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "first"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "* count(\"packets_sent\") / count(\"packets_sent\")"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Packets_Sent"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -2957,28 +3421,69 @@
           ]
         },
         {
-          "alias": "Pckts Sent",
+          "alias": "$tag_interface - $col",
           "groupBy": [],
+          "hide": false,
           "measurement": "net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"packets_sent\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "H",
+          "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "packets_sent"
+                  "drop_in"
                 ],
                 "type": "field"
               },
               {
                 "params": [
-                  "1s"
+                  "Drop_In"
                 ],
-                "type": "derivative"
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "drop_out"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "Drop_Out"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "err_in"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "Err_In"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "err_out"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "Err_Out"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -3001,7 +3506,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "WAN Throughput - $WAN",
+      "title": "WAN Throughput - $WAN 12",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -3017,17 +3522,15 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1433",
           "decimals": 2,
           "format": "short",
           "label": null,
-          "logBase": 10,
+          "logBase": 2,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "$$hashKey": "object:1434",
           "decimals": 2,
           "format": "short",
           "label": null,
@@ -3044,31 +3547,235 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 44
       },
       "id": 43,
       "panels": [],
-      "title": "LAN Interfaces",
+      "repeat": "LAN_Interfaces",
+      "title": "LAN Interfaces - $LAN_Interfaces",
       "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "columns": [],
+      "datasource": "$dataSource",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 45
+      },
+      "id": 450,
+      "links": [],
+      "pageSize": null,
+      "pluginVersion": "6.1.6",
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 2,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "align": "auto",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "link": false,
+          "pattern": "Time",
+          "type": "hidden"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": "value",
+          "colors": [
+            "#FADE2A",
+            "#F2495C",
+            "#73BF69"
+          ],
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Status",
+          "thresholds": [
+            "0",
+            "1",
+            "2"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "DOWN",
+              "value": "0"
+            },
+            {
+              "text": "UP",
+              "value": "1"
+            },
+            {
+              "text": "UNKNOWN",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "alias": "Interface",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "name",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            }
+          ],
+          "limit": "1",
+          "measurement": "interface",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "friendlyname"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "pfSense Label"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "ip_address"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "IP Address"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "mac_address"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "Physical Address"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "status"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Status"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$LAN_Interfaces$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Interface summary",
+      "transform": "table",
+      "transformations": [
+        {
+          "id": "seriesToColumns",
+          "options": {}
+        }
+      ],
+      "type": "table-old"
     },
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
+      "decimals": 2,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 11,
+        "w": 9,
         "x": 0,
-        "y": 42
+        "y": 48
       },
       "hiddenSeries": false,
       "id": 38,
@@ -3085,15 +3792,16 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.4.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeat": "LAN_Interfaces",
+      "repeat": null,
       "repeatDirection": "v",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -3101,74 +3809,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "$tag_interface - LAN Traffic Recv",
+          "alias": "$tag_interface - $col",
           "groupBy": [
             {
               "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_recv\"), 1s)  *-1 FROM \"autogen\".\"net\" WHERE (\"host\" = 'pfSense-home-master.home' AND \"interface\" = 'vtnet0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "bytes_recv"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - LAN Traffic Sent",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
+                "10s"
               ],
               "type": "time"
             },
@@ -3189,11 +3834,39 @@
           "measurement": "net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" = 'pfSense-home-master.home' AND \"interface\" = 'vtnet0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
+          "refId": "D",
           "resultFormat": "time_series",
           "select": [
+            [
+              {
+                "params": [
+                  "bytes_recv"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "first"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "* count(\"bytes_recv\") / count(\"bytes_recv\")"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Bytes_Recv"
+                ],
+                "type": "alias"
+              }
+            ],
             [
               {
                 "params": [
@@ -3203,13 +3876,25 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "first"
               },
               {
                 "params": [
                   "1s"
                 ],
                 "type": "derivative"
+              },
+              {
+                "params": [
+                  "* count(\"bytes_sent\") / count(\"bytes_sent\")"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Bytes_Sent"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -3248,17 +3933,17 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1802",
+          "$$hashKey": "object:6856",
           "decimals": 2,
           "format": "Bps",
           "label": "",
-          "logBase": 10,
+          "logBase": 2,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "$$hashKey": "object:1803",
+          "$$hashKey": "object:6857",
           "decimals": 2,
           "format": "short",
           "label": "",
@@ -3275,68 +3960,78 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bps"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 7,
         "w": 3,
-        "x": 11,
-        "y": 42
+        "x": 9,
+        "y": 48
       },
       "id": 248,
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "decimals": 2,
-            "mappings": [
-              {
-                "$$hashKey": "object:4561",
-                "id": 0,
-                "op": "=",
-                "text": "N/A",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "bps"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "6.7.2",
-      "repeat": "LAN_Interfaces",
+      "pluginVersion": "7.4.3",
+      "repeat": null,
       "repeatDirection": "v",
       "targets": [
         {
-          "alias": "LAN Traffic Recv",
+          "alias": "$tag_interface - $col",
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "10s"
               ],
               "type": "time"
             },
             {
               "params": [
-                "null"
+                "interface"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "none"
               ],
               "type": "fill"
             }
@@ -3344,7 +4039,7 @@
           "measurement": "net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_recv\"), 1s)  *-1 FROM \"autogen\".\"net\" WHERE (\"host\" = 'pfSense-home-master.home' AND \"interface\" = 'vtnet0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT derivative(mean(\"bytes_recv\"), 1s) *8 FROM \"net\" WHERE (\"host\" =~ /^$Host$/ AND \"interface\" =~ /^$LAN_Interfaces$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": false,
           "refId": "C",
           "resultFormat": "time_series",
@@ -3358,7 +4053,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "first"
               },
               {
                 "params": [
@@ -3368,51 +4063,17 @@
               },
               {
                 "params": [
-                  "*8"
+                  "* count(\"bytes_recv\") / count(\"bytes_recv\") * 8"
                 ],
                 "type": "math"
+              },
+              {
+                "params": [
+                  "Bits_Recv"
+                ],
+                "type": "alias"
               }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            },
-            {
-              "condition": "AND",
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            }
-          ]
-        },
-        {
-          "alias": "LAN Traffic Sent",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" =~ /^$Host$/ AND \"interface\" =~ /^$WAN$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
+            ],
             [
               {
                 "params": [
@@ -3422,7 +4083,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "first"
               },
               {
                 "params": [
@@ -3432,9 +4093,15 @@
               },
               {
                 "params": [
-                  "*8"
+                  "* count(\"bytes_sent\") / count(\"bytes_sent\") * 8"
                 ],
                 "type": "math"
+              },
+              {
+                "params": [
+                  "Bits_Sent"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -3459,22 +4126,180 @@
       "type": "stat"
     },
     {
+      "cacheTimeout": null,
+      "datasource": "$dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 2,
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 12,
+        "y": 48
+      },
+      "hideTimeOverride": true,
+      "id": 297,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.4.3",
+      "repeat": null,
+      "repeatDirection": "v",
+      "targets": [
+        {
+          "alias": "$tag_interface - $col - This Month",
+          "groupBy": [
+            {
+              "params": [
+                "10s"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "interface"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "net",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "bytes_recv"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "first"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
+              },
+              {
+                "params": [
+                  "Bytes_Recv"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "bytes_sent"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "first"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
+              },
+              {
+                "params": [
+                  "Bytes_Sent"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$Host$/"
+            },
+            {
+              "condition": "AND",
+              "key": "interface",
+              "operator": "=~",
+              "value": "/^$LAN_Interfaces$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "now/M",
+      "timeShift": null,
+      "title": "LAN $LAN_Interfaces",
+      "type": "stat"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "$dataSource",
+      "decimals": 2,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 10,
-        "x": 14,
-        "y": 42
+        "w": 9,
+        "x": 15,
+        "y": 48
       },
       "hiddenSeries": false,
-      "id": 39,
+      "id": 347,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -3493,13 +4318,14 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "repeat": "LAN_Interfaces",
+      "repeat": null,
       "repeatDirection": "v",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -3507,177 +4333,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "$tag_interface - Drop In",
+          "alias": "$tag_interface - $col",
           "groupBy": [
             {
               "params": [
-                "interface"
+                "10s"
               ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"drop_in\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_in"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
+              "type": "time"
             },
             {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Drop Out",
-          "groupBy": [
-            {
               "params": [
                 "interface"
               ],
               "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"drop_out\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_out"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
             },
             {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Err In",
-          "groupBy": [
-            {
               "params": [
-                "interface"
+                "null"
               ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"err_in\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "err_in"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Err Out",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"err_out\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "err_out"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
-        },
-        {
-          "alias": "$tag_interface - Pckts Recv",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
+              "type": "fill"
             }
           ],
           "measurement": "net",
@@ -3696,10 +4370,56 @@
                 "type": "field"
               },
               {
+                "params": [],
+                "type": "first"
+              },
+              {
                 "params": [
                   "1s"
                 ],
                 "type": "derivative"
+              },
+              {
+                "params": [
+                  "* count(\"packets_recv\") / count(\"packets_recv\")"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Packets_Recv"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "packets_sent"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "first"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "* count(\"packets_sent\") / count(\"packets_sent\")"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Packets_Sent"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -3718,35 +4438,69 @@
           ]
         },
         {
-          "alias": "$tag_interface - Pckts Sent",
-          "groupBy": [
-            {
-              "params": [
-                "interface"
-              ],
-              "type": "tag"
-            }
-          ],
+          "alias": "$tag_interface - $col",
+          "groupBy": [],
+          "hide": true,
           "measurement": "net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"packets_sent\") FROM \"net\" WHERE (\"interface\" =~ /^$Interface$/ AND \"host\" =~ /^$Host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "H",
+          "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "packets_sent"
+                  "drop_in"
                 ],
                 "type": "field"
               },
               {
                 "params": [
-                  "1s"
+                  "Drop_In"
                 ],
-                "type": "derivative"
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "drop_out"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "Drop_Out"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "err_in"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "Err_In"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "err_out"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "Err_Out"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -3754,7 +4508,7 @@
             {
               "key": "interface",
               "operator": "=~",
-              "value": "/^$LAN_Interfaces$/"
+              "value": "/^$WAN$/"
             },
             {
               "condition": "AND",
@@ -3785,16 +4539,16 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1249",
+          "decimals": 2,
           "format": "short",
           "label": null,
-          "logBase": 10,
+          "logBase": 2,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "$$hashKey": "object:1250",
+          "decimals": 2,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -3809,8 +4563,8 @@
       }
     }
   ],
-  "refresh": "5s",
-  "schemaVersion": 22,
+  "refresh": "10s",
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [
     "pfsense",
@@ -3825,6 +4579,8 @@
           "text": "InfluxDB",
           "value": "InfluxDB"
         },
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": null,
@@ -3842,9 +4598,10 @@
         "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"pf\" WITH KEY = \"host\"",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": false,
-        "index": -1,
         "label": "pfSense",
         "multi": false,
         "name": "Host",
@@ -3865,9 +4622,10 @@
         "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"disk\" WITH KEY = \"device\" WHERE \"host\" =~ /^$Host$/",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
-        "index": -1,
         "label": null,
         "multi": false,
         "name": "Disk",
@@ -3888,9 +4646,10 @@
         "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"gateways\" WITH KEY = \"gateway_name\" WHERE \"host\" =~ /^$Host$/ ",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
-        "index": -1,
         "label": null,
         "multi": true,
         "name": "Gateway",
@@ -3910,12 +4669,15 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "tags": [],
-          "text": "All",
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
         },
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": null,
@@ -3923,19 +4685,18 @@
         "name": "WAN",
         "options": [
           {
-            "$$hashKey": "object:755",
             "selected": true,
             "text": "All",
             "value": "$__all"
           },
           {
-            "$$hashKey": "object:756",
             "selected": false,
             "text": "igb0",
             "value": "igb0"
           }
         ],
         "query": "igb0",
+        "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
       },
@@ -3944,18 +4705,19 @@
         "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
-        "index": -1,
         "label": "LAN",
         "multi": true,
         "name": "LAN_Interfaces",
         "options": [],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
         "refresh": 1,
-        "regex": "/^(?!igb0$|igb1|igb3|igb2$)/",
+        "regex": "/^(?!enc0$|igb0$|igb1$|igb2$|igb3$)/",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 1,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -3967,9 +4729,10 @@
         "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"cpu\" WITH KEY = \"cpu\" WHERE \"host\" =~ /^$Host$/ and cpu !~ /cpu-total/",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
-        "index": -1,
         "label": null,
         "multi": true,
         "name": "CPU",
@@ -3978,30 +4741,7 @@
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "$dataSource",
-        "definition": "SHOW TAG VALUES FROM \"interface\" WITH KEY = \"name\" WHERE \"host\" =~ /^$Host$/ ",
-        "hide": 0,
-        "includeAll": true,
-        "index": -1,
-        "label": null,
-        "multi": true,
-        "name": "Interfaces",
-        "options": [],
-        "query": "SHOW TAG VALUES FROM \"interface\" WITH KEY = \"name\" WHERE \"host\" =~ /^$Host$/ ",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
+        "sort": 1,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -4013,9 +4753,10 @@
         "current": {},
         "datasource": "$dataSource",
         "definition": "SHOW TAG VALUES FROM \"temperature\" WITH KEY = \"sensor\" WHERE \"host\" =~ /^$Host$/",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
-        "index": -1,
         "label": null,
         "multi": true,
         "name": "Sensor",
@@ -4053,9 +4794,6 @@
   },
   "timezone": "",
   "title": "pfSense System Dashboard",
-  "uid": "t_qMZwrWk",
-  "variables": {
-    "list": []
-  },
-  "version": 42
+  "uid": "GflT1CsMz",
+  "version": 134
 }

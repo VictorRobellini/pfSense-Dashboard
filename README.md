@@ -28,7 +28,7 @@
 ```docker-compose
 
   grafana-pfSense:
-    image: "grafana/grafana:6.7.2"
+    image: "grafana/grafana:7.4.3"
     container_name: grafana
     hostname: grafana
     mem_limit: 4gb
@@ -51,7 +51,7 @@
     network_mode: bridge
 
   influxdb-pfsense:
-    image: "influxdb:1.7.10-alpine"
+    image: "influxdb:1.8.3-alpine"
     container_name: influxdb
     hostname: influxdb
     mem_limit: 10gb
