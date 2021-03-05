@@ -73,7 +73,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1614900525906,
+  "iteration": 1614902557100,
   "links": [],
   "panels": [
     {
@@ -765,6 +765,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:4806",
           "decimals": 1,
           "format": "none",
           "label": "",
@@ -774,6 +775,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:4807",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -3506,7 +3508,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "WAN Throughput - $WAN 12",
+      "title": "WAN Throughput - $WAN",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -3522,6 +3524,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:7707",
           "decimals": 2,
           "format": "short",
           "label": null,
@@ -3531,6 +3534,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:7708",
           "decimals": 2,
           "format": "short",
           "label": null,
@@ -3552,7 +3556,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 44
+        "y": 88
       },
       "id": 43,
       "panels": [],
@@ -3576,7 +3580,7 @@
         "h": 3,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 89
       },
       "id": 450,
       "links": [],
@@ -3775,7 +3779,7 @@
         "h": 7,
         "w": 9,
         "x": 0,
-        "y": 48
+        "y": 92
       },
       "hiddenSeries": false,
       "id": 38,
@@ -3991,7 +3995,7 @@
         "h": 7,
         "w": 3,
         "x": 9,
-        "y": 48
+        "y": 92
       },
       "id": 248,
       "links": [],
@@ -4158,7 +4162,7 @@
         "h": 7,
         "w": 3,
         "x": 12,
-        "y": 48
+        "y": 92
       },
       "hideTimeOverride": true,
       "id": 297,
@@ -4296,7 +4300,7 @@
         "h": 7,
         "w": 9,
         "x": 15,
-        "y": 48
+        "y": 92
       },
       "hiddenSeries": false,
       "id": 347,
@@ -4436,87 +4440,6 @@
               "value": "/^$Host$/"
             }
           ]
-        },
-        {
-          "alias": "$tag_interface - $col",
-          "groupBy": [],
-          "hide": true,
-          "measurement": "net",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "drop_in"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "Drop_In"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "drop_out"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "Drop_Out"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "err_in"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "Err_In"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "err_out"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "Err_Out"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "interface",
-              "operator": "=~",
-              "value": "/^$WAN$/"
-            },
-            {
-              "condition": "AND",
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Host$/"
-            }
-          ]
         }
       ],
       "thresholds": [],
@@ -4539,6 +4462,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:6174",
           "decimals": 2,
           "format": "short",
           "label": null,
@@ -4548,6 +4472,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:6175",
           "decimals": 2,
           "format": "short",
           "label": null,
@@ -4795,5 +4720,5 @@
   "timezone": "",
   "title": "pfSense System Dashboard",
   "uid": "GflT1CsMz",
-  "version": 134
+  "version": 137
 }
