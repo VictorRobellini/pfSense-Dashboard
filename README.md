@@ -135,8 +135,11 @@ Now go read /var/log/telegraf/telegraf.log
 When in doubt, run a few queries to see if the data you are looking for is being populated.
 
     bash-4.4# influx
-    Connected to http://localhost:8086 version 1.7.10
-    InfluxDB shell version: 1.7.10
+    Connected to http://localhost:8086 version 1.8.3
+    InfluxDB shell version: 1.8.3
+    > auth
+    username: admin
+    password:
     > show databases
     name: databases
     name
