@@ -12,7 +12,7 @@
 - pfBlocker IP Stats
 - pfBlocker DNS Stats
 - Gateway Response time - dpinger
-- List of interfaces with IP, MAC, Status and pfSense labels thanks to [/u/trumee](https://www.reddit.com/r/PFSENSE/comments/fsss8r/additional_grafana_dashboard/fmal0t6/)
+- List of interfaces with IPv4, IPv6, Subnet, MAC, Status and pfSense labels thanks to [/u/trumee](https://www.reddit.com/r/PFSENSE/comments/fsss8r/additional_grafana_dashboard/fmal0t6/)
 - WAN Statistics - Traffic & Throughput (Identified by dashboard variable)
 - LAN Statistics - Traffic & Throughput (Identified by dashboard variable)
 - Unbound stats - Plugin and config included and working but not implemented
