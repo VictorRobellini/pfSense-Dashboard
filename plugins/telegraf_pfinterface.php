@@ -12,15 +12,24 @@ foreach ($iflist as $ifname => $friendly) {
         $ifinfo =  get_interface_info($ifname);
         $ifstatus = $ifinfo['status'];
         $ifconf = $config['interfaces'][$ifname];
-        $ipaddr = get_interface_ip($ifname);
-        $subnet = get_interface_subnet($ifname);
-        $ipaddr6 = get_interface_ipv6($ifname);
-        $subnet6 = get_interface_subnetv6($ifname);
+        $ip4addr = get_interface_ip($ifname);
+        $ip4subnet = get_interface_subnet($ifname);
+        $ip6addr = get_interface_ipv6($ifname);
+        $ip6subnet = get_interface_subnetv6($ifname);
         $realif = get_real_interface($ifname);
         $mac = get_interface_mac($realif);
 
-        if (!isset($ipaddr)){
-                $ipaddr = "Unassigned";
+        if (!isset($ip4addr)){
+                $ip4addr = "Unassigned";
+        }
+        if (!isset($ip4subnet)){
+            $ip4subnet = "Unassigned"; 
+        }
+        if (!isset($ip6addr)){
+            $ip6addr = "Unassigned";
+        }
+        if (!isset($ip6subnet)){
+            $ip6subnet = "Unassigned"; 
         }
         if (!isset($mac)){
                 $mac = "Unavailable";
@@ -41,10 +50,13 @@ foreach ($iflist as $ifname => $friendly) {
                 $ifstatus = 2;
         }   
 
-        printf("interface,host=%s,name=%s,ip_address=%s,mac_address=%s,friendlyname=%s,source=%s status=%s\n",
+        printf("interface,host=%s,name=%s,ip4_address=%s,ip4_subnet=%s,ip6_address=%s,ip6_subnet=%s,mac_address=%s,friendlyname=%s,source=%s status=%s\n",
                 $host,
                 $realif,
-                $ipaddr,
+                $ip4addr,
+                $ip4subnet,
+                $ip6addr,
+                $ip6subnet,
                 $mac,
                 $friendly,
                 $source,
