@@ -18,6 +18,7 @@ I dropped the old measurements
 
 If you cannot live without this data, you could use the panels [from this commit](https://github.com/VictorRobellini/pfSense-Dashboard/blob/0df10172506242105891a81f5076019b5a5867b0/pfSense-Grafana-Dashboard.json) and not update the config. Read my note about the Logparser Input Plugin above!
 
+You could convert the Logparser config to Tail (read the Logparser docs - it looks simple).  I wanted to go the csv route and add an index or two.
 I'm sure you can even rename the measurements, columns and update the tags, but that's beyond my influx capabilities.
 
 ## What's Monitored
