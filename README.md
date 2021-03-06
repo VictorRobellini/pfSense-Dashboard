@@ -144,7 +144,7 @@ If you get no good output from running the plugin directly, try the following co
 
 To troubleshoot plugins further, add the following lines to the agent block in /usr/local/etc/telegraf.conf and send a HUP to the telegraf pid. You're going to need to do this from a ssh shell. One you update the config you are going to need to tell telegraf to read the new configs. If you restart telegraf from pfSense, this will not work since it will overwrite your changes.
 
-#### Telegraf Config
+#### Telegraf Config (Paste in to [agent] section)
     debug = true
     quiet = false
     logfile = "/var/log/telegraf/telegraf.log"
