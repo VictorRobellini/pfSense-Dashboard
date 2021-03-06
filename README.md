@@ -1,3 +1,25 @@
+# Heads up!
+In the recent commits I updated the telegraf config to use the [Tails Input Plugin](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/tail) in place of the [Logparser Input Plugin](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/logparser) since it's been deprecated.
+
+I renamed many of the columns to reflect [what's being logged by pfBlockerNG-devel](https://github.com/pfsense/FreeBSD-ports/blob/232722ac52edaeede58b551e7e2efb690ce1023d/net/pfSense-pkg-pfBlockerNG-devel/files/usr/local/pkg/pfblockerng/pfblockerng.inc#L4597).  As a result, the measurements ip_block_log and dnsbl_log have been replaced with tail_ipblock and tail_dnsbl respectively.
+
+I dropped the old measurements
+
+    bash-4.4# influx
+    Connected to http://localhost:8086 version 1.8.3
+    InfluxDB shell version: 1.8.3
+    > auth
+    username: admin
+    password:
+    > use pfsense
+    Using database pfsense
+    > drop measurement ip_block_log
+    > drop measurement dnsbl_log
+
+If you cannot live without this data, you could use the panels [from this commit](https://github.com/VictorRobellini/pfSense-Dashboard/blob/0df10172506242105891a81f5076019b5a5867b0/pfSense-Grafana-Dashboard.json) and not update the config. Read my note about the Logparser Input Plugin above!
+
+I'm sure you can even rename the measurements, columns and update the tags, but that's beyond my influx capabilities.
+
 ## What's Monitored
 - Active Users
 - Uptime
@@ -12,7 +34,7 @@
 - pfBlocker IP Stats
 - pfBlocker DNS Stats
 - Gateway Response time - dpinger
-- List of interfaces with IP, MAC, Status and pfSesnse labels thanks to [/u/trumee](https://www.reddit.com/r/PFSENSE/comments/fsss8r/additional_grafana_dashboard/fmal0t6/)
+- List of interfaces with IP, MAC, Status and pfSense labels thanks to [/u/trumee](https://www.reddit.com/r/PFSENSE/comments/fsss8r/additional_grafana_dashboard/fmal0t6/)
 - WAN Statistics - Traffic & Throughput (Identified by dashboard variable)
 - LAN Statistics - Traffic & Throughput (Identified by dashboard variable)
 - Unbound stats - Plugin and config included and working but not implemented
@@ -23,8 +45,9 @@
 
     Grafana 7.4.3
     Influxdb 1.8.3
-
+    
 ### docker-compose example with persistent storage
+##### I've recently migrated my stack to Kubernetes, the image versions are updated but the docker-compose is untested.
 ```docker-compose
 
   grafana-pfSense:
@@ -155,16 +178,16 @@ When in doubt, run a few queries to see if the data you are looking for is being
     cpu
     disk
     diskio
-    dnsbl_log
     gateways
     interface
-    ip_block_log
     mem
     net
     pf
     processes
     swap
     system
+    tail_dnsbl
+    tail_ipblock
     temperature
     > select * from system limit 20
     name: system
