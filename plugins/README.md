@@ -1,3 +1,6 @@
+# telegraf_pfinterface.php
+IP Address and subnet for IPv4 and IPv6 are collected.  I don't have an ipv6 on the dashbaord because I don't use it.
+
 # telegraf_gateways
 Depending on how recent your pfSense install is, you may need to use the python 3.7 version of the plugin. If you are running 2.4.5, you probably want telegraf_gateways-3.7.py. They both output he same data in the same format.
 
