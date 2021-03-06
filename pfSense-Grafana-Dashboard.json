@@ -78,11 +78,11 @@
       }
     ]
   },
-  "editable": false,
+  "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1615055260291,
+  "iteration": 1615064017349,
   "links": [],
   "panels": [
     {
@@ -3001,13 +3001,13 @@
             [
               {
                 "params": [
-                  "ip_address"
+                  "ip4_address"
                 ],
                 "type": "field"
               },
               {
                 "params": [
-                  "IP Address"
+                  "IPv4 Address"
                 ],
                 "type": "alias"
               }
@@ -3043,6 +3043,20 @@
                 ],
                 "type": "alias"
               }
+            ],
+            [
+              {
+                "params": [
+                  "ip6_address"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "IPv6 Address"
+                ],
+                "type": "alias"
+              }
             ]
           ],
           "tags": [
@@ -3070,10 +3084,10 @@
             "include": {
               "names": [
                 "name",
-                "IP Address",
+                "FriendlyName",
                 "Physical Address",
                 "Status",
-                "FriendlyName"
+                "IPv4 Address"
               ]
             }
           }
@@ -3233,13 +3247,13 @@
             [
               {
                 "params": [
-                  "ip_address"
+                  "ip4_address"
                 ],
                 "type": "field"
               },
               {
                 "params": [
-                  "IP Address"
+                  "IPv4 Address"
                 ],
                 "type": "alias"
               }
@@ -3308,10 +3322,10 @@
             "include": {
               "names": [
                 "name",
-                "IP Address",
+                "FriendlyName",
                 "Physical Address",
                 "Status",
-                "FriendlyName"
+                "IPv4 Address"
               ]
             }
           }
@@ -4126,7 +4140,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 88
+        "y": 44
       },
       "id": 43,
       "panels": [],
@@ -4227,7 +4241,7 @@
         "h": 3,
         "w": 24,
         "x": 0,
-        "y": 89
+        "y": 45
       },
       "id": 604,
       "links": [],
@@ -4271,13 +4285,13 @@
             [
               {
                 "params": [
-                  "ip_address"
+                  "ip4_address"
                 ],
                 "type": "field"
               },
               {
                 "params": [
-                  "IP Address"
+                  "IPv4 Address"
                 ],
                 "type": "alias"
               }
@@ -4346,10 +4360,10 @@
             "include": {
               "names": [
                 "name",
-                "IP Address",
+                "FriendlyName",
                 "Physical Address",
                 "Status",
-                "FriendlyName"
+                "IPv4 Address"
               ]
             }
           }
@@ -4377,7 +4391,7 @@
         "h": 7,
         "w": 9,
         "x": 0,
-        "y": 92
+        "y": 48
       },
       "hiddenSeries": false,
       "id": 38,
@@ -4591,7 +4605,7 @@
         "h": 7,
         "w": 3,
         "x": 9,
-        "y": 92
+        "y": 48
       },
       "id": 248,
       "links": [],
@@ -4758,7 +4772,7 @@
         "h": 7,
         "w": 3,
         "x": 12,
-        "y": 92
+        "y": 48
       },
       "hideTimeOverride": true,
       "id": 297,
@@ -4896,7 +4910,7 @@
         "h": 7,
         "w": 9,
         "x": 15,
-        "y": 92
+        "y": 48
       },
       "hiddenSeries": false,
       "id": 347,
@@ -5292,7 +5306,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -5312,5 +5326,5 @@
   "timezone": "",
   "title": "pfSense System Dashboard",
   "uid": "GflT1CsMz",
-  "version": 118
+  "version": 130
 }
