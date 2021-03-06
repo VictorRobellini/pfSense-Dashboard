@@ -78,11 +78,11 @@
       }
     ]
   },
-  "editable": true,
+  "editable": false,
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1615001926430,
+  "iteration": 1615055260291,
   "links": [],
   "panels": [
     {
@@ -1614,7 +1614,7 @@
           "measurement": "tail_ipblock",
           "orderByTime": "ASC",
           "policy": "autogen",
-          "query": "SELECT TOP(\"count\",\"src_ip\",10) FROM (SELECT count(\"action\") FROM \"autogen\".\"tail_ipblock\" WHERE (\"host\" =~ /^$Host$/ AND \"action\" = 'block' AND \"direction\" = 'in') AND $timeFilter GROUP BY \"src_ip\")",
+          "query": "SELECT TOP(\"count\",\"src_ip\",10) FROM (SELECT count(\"action\") FROM \"autogen\".\"tail_ip_block_log\" WHERE (\"host\" =~ /^$Host$/ AND \"action\" = 'block' AND \"direction\" = 'in') AND $timeFilter GROUP BY \"src_ip\")",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "table",
@@ -1771,7 +1771,7 @@
           "measurement": "tail_ipblock",
           "orderByTime": "ASC",
           "policy": "autogen",
-          "query": "SELECT TOP(\"count\",\"src_ip\",10) FROM (SELECT count(\"action\") FROM \"autogen\".\"tail_ipblock\" WHERE (\"host\" =~ /^$Host$/ AND \"action\" = 'block' AND \"direction\" = 'out') AND $timeFilter GROUP BY \"src_ip\")",
+          "query": "SELECT TOP(\"count\",\"src_ip\",10) FROM (SELECT count(\"action\") FROM \"autogen\".\"tail_ip_block_log\" WHERE (\"host\" =~ /^$Host$/ AND \"action\" = 'block' AND \"direction\" = 'out') AND $timeFilter GROUP BY \"src_ip\")",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "table",
@@ -1909,7 +1909,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "tail_ipblock",
+          "measurement": "tail_ip_block_log",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1971,7 +1971,7 @@
             }
           ],
           "hide": false,
-          "measurement": "tail_ipblock",
+          "measurement": "tail_ip_block_log",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -2083,7 +2083,7 @@
               "type": "tag"
             }
           ],
-          "measurement": "tail_ipblock",
+          "measurement": "tail_ip_block_log",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT count(\"action\") FROM \"ip_block_log\" WHERE $timeFilter GROUP BY \"GeoIP\"",
@@ -2115,6 +2115,12 @@
               "key": "action",
               "operator": "=",
               "value": "block"
+            },
+            {
+              "condition": "AND",
+              "key": "direction",
+              "operator": "=",
+              "value": "in"
             }
           ]
         }
@@ -2195,7 +2201,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "tail_dnsbl",
+          "measurement": "tail_dnsbl_log",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2331,7 +2337,7 @@
           "measurement": "tail_dnsbl",
           "orderByTime": "ASC",
           "policy": "autogen",
-          "query": "SELECT TOP(\"count\",\"src_ip\",10) FROM (SELECT count(\"domain\") FROM \"autogen\".\"tail_dnsbl\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter GROUP BY \"src_ip\")",
+          "query": "SELECT TOP(\"count\",\"src_ip\",10) FROM (SELECT count(\"domain\") FROM \"autogen\".\"tail_dnsbl_log\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter GROUP BY \"src_ip\")",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "table",
@@ -2478,7 +2484,7 @@
           "measurement": "tail_dnsbl",
           "orderByTime": "ASC",
           "policy": "autogen",
-          "query": "SELECT TOP(\"count\",\"tld\",10) FROM (SELECT count(\"domain\") FROM \"autogen\".\"tail_dnsbl\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter GROUP BY \"tld\")",
+          "query": "SELECT TOP(\"count\",\"tld\",10) FROM (SELECT count(\"domain\") FROM \"autogen\".\"tail_dnsbl_log\" WHERE (\"host\" =~ /^$Host$/) AND $timeFilter GROUP BY \"tld\")",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "table",
@@ -5286,7 +5292,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -5306,5 +5312,5 @@
   "timezone": "",
   "title": "pfSense System Dashboard",
   "uid": "GflT1CsMz",
-  "version": 103
+  "version": 118
 }
