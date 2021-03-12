@@ -99,6 +99,7 @@ Stripped [yaml templates](https://github.com/VictorRobellini/K8s-homelab-pub) us
       TZ: "America/New_York"
       INFLUXDB_DATA_QUERY_LOG_ENABLED: "false"
       INFLUXDB_REPORTING_DISABLED: "true"
+      INFLUXDB_HTTP_AUTH_ENABLED: "true"
       INFLUXDB_ADMIN_USER: "admin"
       INFLUXDB_ADMIN_PASSWORD: "adminpassword"
       INFLUXDB_USER: "pfsense"
