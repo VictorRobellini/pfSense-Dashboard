@@ -152,7 +152,7 @@ I also included a wrapper script for Unbound DNS.  I'm not currently using it, b
 - If you're copying from a windows system, make sure the [CRLF is correct](https://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/)
 - The below command should display unix line endings (\n or LF) as $ and Windows line endings (\r\n or CRLF) as ^M$.
 
-`cat -e /usr/local/bin/telegraf_pfinterface.php`
+`# cat -e /usr/local/bin/telegraf_pfinterface.php`
 
 #### Telegraf Troubleshooting
 If you get no good output from running the plugin directly, try the following command before moving to the below step.
