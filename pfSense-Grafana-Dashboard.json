@@ -76,7 +76,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1615064635211,
+  "iteration": 1616168753114,
   "links": [],
   "panels": [
     {
@@ -3678,7 +3678,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "7.4.3",
-      "repeat": "WAN",
+      "repeat": null,
       "repeatDirection": "v",
       "targets": [
         {
@@ -3844,7 +3844,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "7.4.3",
-      "repeat": "WAN",
+      "repeat": null,
       "repeatDirection": "v",
       "targets": [
         {
@@ -3990,7 +3990,7 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "repeat": "WAN",
+      "repeat": null,
       "repeatDirection": "v",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -4102,7 +4102,26 @@
         },
         {
           "alias": "$tag_interface - $col",
-          "groupBy": [],
+          "groupBy": [
+            {
+              "params": [
+                "interface"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "interface"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
           "hide": false,
           "measurement": "net",
           "orderByTime": "ASC",
@@ -4232,7 +4251,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 88
+        "y": 56
       },
       "id": 43,
       "panels": [
@@ -5352,9 +5371,14 @@
             "selected": false,
             "text": "igb0",
             "value": "igb0"
+          },
+          {
+            "selected": false,
+            "text": "ovpnc1",
+            "value": "ovpnc1"
           }
         ],
-        "query": "igb0",
+        "query": "igb0,ovpnc1",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -5374,7 +5398,7 @@
         "options": [],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE \"host\" =~ /^$Host$/ ",
         "refresh": 1,
-        "regex": "/^(?!enc0$|igb0$|igb1$|igb2$|igb3$)/",
+        "regex": "/^(?!enc0$|igb0$|igb1$|igb2$|igb3$|ovpnc1$)/",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
@@ -5434,7 +5458,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -5454,5 +5478,5 @@
   "timezone": "",
   "title": "pfSense System Dashboard",
   "uid": "GflT1CsMz",
-  "version": 135
+  "version": 145
 }
