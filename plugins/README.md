@@ -4,7 +4,10 @@ IP Address and subnet for IPv4 and IPv6 are collected.  I don't have an ipv6 on 
 # telegraf_gateways
 Depending on how recent your pfSense install is, you may need to use the python 3.7 version of the plugin. If you are running 2.4.5, you probably want telegraf_gateways-3.7.py. They both output he same data in the same format.
 
-All I did was copy telegraf_gateways-3.7.py to /usr/local/bin and rename it to telegraf_gateways.py
+There is also now a "telegraf_gateways_status-3.7.py" which calls the "return_gateways_status_text" function from "/etc/inc/gwlb.inc". In addition to the loss, rtt, and rttsd included in the original plugin, this plugin will also return the gateway IP, monitored IP, status, and substatus of the gateway. This eliminates the guess work of whether or not pfSense has marked this gateway as down. 
+
+To use this plugin, simply choose your preferred version and save it as "/usr/local/bin/telegraf_gateways.py" on your pfSense box.
+
 ## Python 2.7
 
 Does /usr/local/bin/python2.7 exist on your pfSense system? If so, use this telegraf_gateways-2.7.py
