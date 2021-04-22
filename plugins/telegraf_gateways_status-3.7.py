@@ -1,6 +1,5 @@
 #!/usr/local/bin/python3.7
 
-from datetime import datetime
 import subprocess
 import sys
 
