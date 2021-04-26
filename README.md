@@ -53,6 +53,8 @@ to
 from_beginning = true
 
 I'm sure you can even rename the measurements, columns and update the tags, but that's beyond my influx capabilities.
+
+
     
 ### Templates of what I currently run in my Kubernetes homelab
 Kubernetes deployed locally with [these instructions](https://www.reddit.com/r/homelab/comments/ipsc4r/howto_k8s_metallb_and_external_dns_access_for/)
