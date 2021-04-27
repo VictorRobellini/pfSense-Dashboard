@@ -5,18 +5,8 @@ Perhaps the easiest method of installing these plugins is by utlizing the "Filer
 IP Address and subnet for IPv4 and IPv6 are collected.  I don't have an ipv6 on the dashbaord because I don't use it.
 
 # telegraf_gateways.php
+#### This replaces telegraf_gateways.py scripts (2.7 & 3.7) 
 This has been modified from the original python version to a native PHP script. The new script calls the builtin "return_gateways_status_text" function from "/etc/inc/gwlb.inc". In addition to the loss, rtt, and rttsd included in the original plugin, the new version will also return the gateway IP, monitored IP, status, and substatus of the gateway. This eliminates the guess work of whether or not pfSense has marked this gateway as down. 
-
-## Python 2.7
-
-Does /usr/local/bin/python2.7 exist on your pfSense system? If so, use this telegraf_gateways-2.7.py
-## Python 3.7
-
-Does /usr/local/bin/python3.7 exist on your pfSense system? If so, use this telegraf_gateways-3.7.py
-
-If you have both 2.7 and 3.7 on your system, use 3.7
-
-Thanks to [this thread](https://forum.netgate.com/topic/152132/grafana-dashboard-using-telegraf-with-additional-plugins/16), user [bigjohns97](https://forum.netgate.com/user/bigjohns97) for following up and [fastjack](https://gist.github.com/fastjack) for the dev effort.
 
 # telegraf_unbound_lite.sh
 #### This plugin is not in use on my system but it's still worth documenting.
