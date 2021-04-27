@@ -23,38 +23,24 @@
 
     Grafana 7.4.3
     Influxdb 1.8.3
+
+## Changelog
+This is just a summary, for more details look at the commits.
+- This update includes plugins, telegraf config and the dashboard
+- Added more pfBlocker information in separate panel to keep things organized.
+- Replaced telegraph_gateways.py with telegraph_gateways.php
+- Added gateway interface detail table
+- If things render weird, drop the following measurements: tail_ip_block_log, gateways, tail_dnsbl_log
     
 ## Heads up!
 
-Due to the update in the Gateway plugin, you may need to drop your gateways measurement.
-
-    bash-4.4# influx
-    Connected to http://localhost:8086 version 1.8.3
-    InfluxDB shell version: 1.8.3
-    > auth
-    username: admin
-    password:
-    > use pfsense
-    Using database pfsense
-    > drop measurement gateways
-
+Due to the update in the Gateway plugin (move from py to php), you may need to drop your gateways measurement.
 
 In the recent commits I updated the telegraf config to use the [Tails Input Plugin](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/tail) in place of the [Logparser Input Plugin](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/logparser) since it's been deprecated.
 
 I renamed many of the columns to reflect [what's being logged by pfBlockerNG-devel](https://github.com/pfsense/FreeBSD-ports/blob/232722ac52edaeede58b551e7e2efb690ce1023d/net/pfSense-pkg-pfBlockerNG-devel/files/usr/local/pkg/pfblockerng/pfblockerng.inc#L4597) and fixed some parsing bugs that cause lines to be skipped due to inconsistent log formatting.  As a result, the measurements ip_block_log and dnsbl_log have been replaced with tail_ip_block_log and tail_dnsbl_log respectively.
 
-I dropped the old measurements
-
-    bash-4.4# influx
-    Connected to http://localhost:8086 version 1.8.3
-    InfluxDB shell version: 1.8.3
-    > auth
-    username: admin
-    password:
-    > use pfsense
-    Using database pfsense
-    > drop measurement ip_block_log
-    > drop measurement dnsbl_log
+I dropped the old measurements: ip_block_log, dnsbl_log
 
 If you cannot live without this data, you could use the panels [from this commit](https://github.com/VictorRobellini/pfSense-Dashboard/blob/0df10172506242105891a81f5076019b5a5867b0/pfSense-Grafana-Dashboard.json) and not update the config. Read my note about the Logparser Input Plugin above!
 
@@ -235,6 +221,19 @@ When in doubt, run a few queries to see if the data you are looking for is being
     1585272680000000000 pfSense.home         0.02978515625 0.07470703125 0.0673828125  4      1       196910     2 days,  6:41
     1585272690000000000 pfSense.home         0.02490234375 0.07373046875 0.064453125   4      1       196920     2 days,  6:42
     ...
+    
+
+How to drop influx measurement
+
+    bash-4.4# influx
+    Connected to http://localhost:8086 version 1.8.3
+    InfluxDB shell version: 1.8.3
+    > auth
+    username: admin
+    password:
+    > use pfsense
+    Using database pfsense
+    > drop measurement ip_block_log
 
 ## [Original Reddit thread](https://www.reddit.com/r/PFSENSE/comments/fsss8r/additional_grafana_dashboard/ "Originial Reddit thread")
 
