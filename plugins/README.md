@@ -1,10 +1,12 @@
+# Installing the Plugins
+Perhaps the easiest method of installing these plugins is by utlizing the "Filer" plugin in pfSense. Simply type the entire file name (i.e. "/usr/local/bin/plugin_name") and paste the code into the window. Make sure to set the permissions to be "0755", as they default to "0644" which is NOT executable!
+
 # telegraf_pfinterface.php
 IP Address and subnet for IPv4 and IPv6 are collected.  I don't have an ipv6 on the dashbaord because I don't use it.
 
-# telegraf_gateways
-Depending on how recent your pfSense install is, you may need to use the python 3.7 version of the plugin. If you are running 2.4.5, you probably want telegraf_gateways-3.7.py. They both output he same data in the same format.
+# telegraf_gateways.php
+This has been modified from the original python version to a native PHP script. The new script calls the builtin "return_gateways_status_text" function from "/etc/inc/gwlb.inc". In addition to the loss, rtt, and rttsd included in the original plugin, the new version will also return the gateway IP, monitored IP, status, and substatus of the gateway. This eliminates the guess work of whether or not pfSense has marked this gateway as down. 
 
-All I did was copy telegraf_gateways-3.7.py to /usr/local/bin and rename it to telegraf_gateways.py
 ## Python 2.7
 
 Does /usr/local/bin/python2.7 exist on your pfSense system? If so, use this telegraf_gateways-2.7.py

@@ -53,6 +53,8 @@ to
 from_beginning = true
 
 I'm sure you can even rename the measurements, columns and update the tags, but that's beyond my influx capabilities.
+
+
     
 ### Templates of what I currently run in my Kubernetes homelab
 Kubernetes deployed locally with [these instructions](https://www.reddit.com/r/homelab/comments/ipsc4r/howto_k8s_metallb_and_external_dns_access_for/)
@@ -229,6 +231,7 @@ What I updated:
 - Created dashboard wide variables to make the dashboard more portable and easily configurable. You shouldn't need to update any of the queries.
 - Took some inspiration and panels [from this dashboard](https://grafana.com/grafana/dashboards/9806 "from this dashboard")
 - Included gateway RTT from dpinger thanks to [this integration](https://forum.netgate.com/topic/142093/can-telegraf-package-gather-latency-packet-loss-information/3 "this integration")
+- Pulled information from the "return_gateways_status_text" function in "/etc/inc/gwlb.inc" to return the actual status of the gateway, as well as the current loss/rtt and IP values.
 - Used[ telegraf configs](https://www.reddit.com/r/pfBlockerNG/comments/bu0ms0/pfblockerngtelegrafinfluxdb_ip_block_list/ " telegraf configs") from this post by [/u/PeskyWarrior](https://www.reddit.com/u/PeskyWarrior "/u/PeskyWarrior")
 - Tag, templating - No need to specify all cpus or interfaces in the graph queries. These values are pulled in with queries.
 - Added chart to show all adapters, IP, MAC and Status[ from here](https://github.com/influxdata/telegraf/issues/3756#issuecomment-485606025 " from here")
