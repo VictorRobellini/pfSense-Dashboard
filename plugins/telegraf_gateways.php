@@ -26,7 +26,7 @@ foreach ($a_gateways as $i => $gateway) {
     $gwdescr = $gateway["descr"];
     $defaultgw = $gateway['isdefaultgw'];
 
-    if (!isset($gateway['isdefaultgw'])) {
+    if (isset($gateway['isdefaultgw'])) {
         $defaultgw = "1";
     } else {
         $defaultgw = "0";
