@@ -18,7 +18,7 @@ foreach ($gw_array as $gw => $gateway) {
     $stddev = $gw_statuses[$gw]["stddev"];
     $loss = $gw_statuses[$gw]["loss"];
     $status = $gw_statuses[$gw]["status"];
-    $substatus = $gw_statuses[$gw]["substatus"];
+    $substatus;
 
     $interface = $gateway["interface"];
     $friendlyname = $gateway["friendlyiface"]; # This is not the friendly interface name so I'm not using it
