@@ -25,6 +25,20 @@
     Influxdb 1.8.3
     
 ## Heads up!
+
+Due to the update in the Gateway plugin, you may need to drop your gateways measurement.
+
+    bash-4.4# influx
+    Connected to http://localhost:8086 version 1.8.3
+    InfluxDB shell version: 1.8.3
+    > auth
+    username: admin
+    password:
+    > use pfsense
+    Using database pfsense
+    > drop measurement gateways
+
+
 In the recent commits I updated the telegraf config to use the [Tails Input Plugin](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/tail) in place of the [Logparser Input Plugin](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/logparser) since it's been deprecated.
 
 I renamed many of the columns to reflect [what's being logged by pfBlockerNG-devel](https://github.com/pfsense/FreeBSD-ports/blob/232722ac52edaeede58b551e7e2efb690ce1023d/net/pfSense-pkg-pfBlockerNG-devel/files/usr/local/pkg/pfblockerng/pfblockerng.inc#L4597) and fixed some parsing bugs that cause lines to be skipped due to inconsistent log formatting.  As a result, the measurements ip_block_log and dnsbl_log have been replaced with tail_ip_block_log and tail_dnsbl_log respectively.
