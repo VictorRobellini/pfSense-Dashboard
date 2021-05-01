@@ -2,8 +2,9 @@
 Perhaps the easiest method of installing these plugins is by utlizing the "Filer" plugin in pfSense. Simply type the entire file name (i.e. "/usr/local/bin/plugin_name") and paste the code into the window. Make sure to set the permissions to be "0755", as they default to "0644" which is NOT executable!
 
 # telegraf_pfifgw.php
-#### Replaces: telegraf_pfinterface.php and telegraf_gateways.php
-#### Replaces: telegraf_gateways.py scripts (2.7 & 3.7)
+
+*Replaces telegraf_gateways.py scripts (2.7 & 3.7)*
+*Replaces telegraf_pfinterface.php and telegraf_gateways.php*
 
 This single script collects information for Interfaces and gateways.
 
