@@ -1,11 +1,34 @@
 # Installing the Plugins
 Perhaps the easiest method of installing these plugins is by utlizing the "Filer" plugin in pfSense. Simply type the entire file name (i.e. "/usr/local/bin/plugin_name") and paste the code into the window. Make sure to set the permissions to be "0755", as they default to "0644" which is NOT executable!
 
-# telegraf_pfinterface.php
-IP Address and subnet for IPv4 and IPv6 are collected.  I don't have an ipv6 on the dashbaord because I don't use it.
+# telegraf_pfifgw.php
+#### Replaces: telegraf_pfinterface.php and telegraf_gateways.php
+#### Replaces: telegraf_gateways.py scripts (2.7 & 3.7)
 
-# telegraf_gateways.php
-#### This replaces telegraf_gateways.py scripts (2.7 & 3.7) 
+This single script collects information for Interfaces and gateways.
+
+**Interfaces:**
+* Interface name
+* IP4 address
+* IP4 subnet
+* IP6 address
+* IP6 subnet
+* MAC address
+* Friendly name
+* Status (Online/Offline/Etc.)
+
+**Gateways:**
+* Interface name
+* Monitor IP
+* Source IP
+* Default gw (True/False)
+* GW Description
+* Delay
+* Stddev
+* Loss (%)
+* Status (Online/Offline/etc.)
+* Substatus (None/Packetloss/Latency/Etc.)
+
 This has been modified from the original python version to a native PHP script. The new script calls the builtin "return_gateways_status_text" function from "/etc/inc/gwlb.inc". In addition to the loss, rtt, and rttsd included in the original plugin, the new version will also return the gateway IP, monitored IP, status, and substatus of the gateway. This eliminates the guess work of whether or not pfSense has marked this gateway as down. 
 
 # telegraf_unbound_lite.sh
