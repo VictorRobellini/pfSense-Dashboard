@@ -141,8 +141,9 @@ I also included the config for Unbound DNS and it's commented out.  I'm not curr
 ### Plugins
 [Plugins](plugins)
 
-I put all my plugins in /usr/local/bin and set them to 555
+**Plugins get copied to your pfSense system**
 
+I put all my plugins in /usr/local/bin and set them to 555
 
 I also included a wrapper script for Unbound DNS.  I'm not currently using it, but it's fully functional.
    
