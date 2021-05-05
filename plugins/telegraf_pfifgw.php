@@ -65,21 +65,20 @@ foreach ($iflist as $ifname => $friendly) {
 }
 
 $gw_array = return_gateways_array();
+//$gw_statuses is not guarranteed to contain the same number of gateways as $gw_array
 $gw_statuses = return_gateways_status(true);
 
 $debug = false;
 
 if($debug){
-  print_r($a_gateways);
-  print_r($gateways_status);
+  print_r($gw_array);
+  print_r($gw_statuses);
 }
 
 foreach ($gw_array as $gw => $gateway) {
 
 	//take the name from the $a_gateways list
 	$name = $gateway["name"];
-	
-	//$gateways_status is not guarranteed to contain the same number of gateways as $a_gateways
 	
 	$monitor = $gw_statuses[$gw]["monitorip"];
 	$source = $gw_statuses[$gw]["srcip"];
