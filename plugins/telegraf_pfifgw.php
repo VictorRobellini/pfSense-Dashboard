@@ -65,11 +65,21 @@ foreach ($iflist as $ifname => $friendly) {
 }
 
 $gw_array = return_gateways_array();
+//$gw_statuses is not guarranteed to contain the same number of gateways as $gw_array
 $gw_statuses = return_gateways_status(true);
+
+$debug = false;
+
+if($debug){
+  print_r($gw_array);
+  print_r($gw_statuses);
+}
 
 foreach ($gw_array as $gw => $gateway) {
 
-	$name = $gw_statuses[$gw]["name"];
+	//take the name from the $a_gateways list
+	$name = $gateway["name"];
+	
 	$monitor = $gw_statuses[$gw]["monitorip"];
 	$source = $gw_statuses[$gw]["srcip"];
 	$delay = $gw_statuses[$gw]["delay"];
@@ -106,9 +116,10 @@ foreach ($gw_array as $gw => $gateway) {
 		$substatus = "N/A";
 	}
 
-	printf("gateways,host=%s,interface=%s monitor=\"%s\",source=\"%s\",defaultgw=%s,gwdescr=\"%s\",delay=%s,stddev=%s,loss=%s,status=\"%s\",substatus=\"%s\"\n",
+	printf("gateways,host=%s,interface=%s,gateway_name=%s monitor=\"%s\",source=\"%s\",defaultgw=%s,gwdescr=\"%s\",delay=%s,stddev=%s,loss=%s,status=\"%s\",substatus=\"%s\"\n",
 		$host,
 		$interface,
+		$name,//name is required as it is possible to have 2 gateways on 1 interface.  i.e. WAN_DHCP and WAN_DHCP6
 		$monitor,
 		$source,
 		$defaultgw,
