@@ -26,6 +26,8 @@
 
 ## Changelog
 This is just a summary, for more details look at the commits.
+
+- Big Performance boost for subqueries in dashboard: https://github.com/influxdata/influxdb/issues/9122
 - This update includes plugins, telegraf config and the dashboard
 - Added more pfBlocker information in separate panel to keep things organized.
 - Replaced telegraph_gateways.py with telegraph_gateways.php
