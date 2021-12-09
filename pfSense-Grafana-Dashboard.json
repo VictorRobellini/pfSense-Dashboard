@@ -1941,7 +1941,7 @@
       "type": "table"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2232,7 +2232,7 @@
       "valueName": "total"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -2839,7 +2839,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": "$dataSource",
       "fieldConfig": {
         "defaults": {
           "color": {
