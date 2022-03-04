@@ -23,6 +23,10 @@
 
     Grafana 7.4.3
     Influxdb 1.8.3
+    
+## Known Issues
+    pfSense 2.6 - No Stats from pfBlocker - https://github.com/VictorRobellini/pfSense-Dashboard/issues/58 
+    -
 
 ## Changelog
 This is just a summary, for more details look at the commits.
