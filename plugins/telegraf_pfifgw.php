@@ -86,6 +86,22 @@ if ($debug) {
     print_r($gw_statuses);
 }
 
+
+// Fetch rtt and rttsd from dpinger
+const DPINGER_SOCK_PATH = "/var/run/dpinger*.sock";
+$gw_dpinger = [];
+foreach(glob(DPINGER_SOCK_PATH) as $sock_path) {
+    $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
+    socket_connect($socket, $sock_path);
+    $line = str_replace(["\n", "\r"], "", socket_read($socket, 1024, PHP_NORMAL_READ));
+    $elements = explode(" ", $line);
+
+    $gateway_name = $elements[0];
+    $gw_dpinger[$gateway_name]['rtt'] = sprintf("%.1f", floatval($elements[1]));
+    $gw_dpinger[$gateway_name]['rttsd'] = sprintf("%.1f", floatval($elements[2]));
+    socket_close($socket);
+}
+
 foreach ($gw_array as $gw => $gateway) {
 
     //take the name from the $a_gateways list
@@ -99,6 +115,8 @@ foreach ($gw_array as $gw => $gateway) {
     $status = $gw_statuses[$gw]["status"];
     $status_code;
     $substatus;
+    $rtt;
+    $rttsd;
 
     $interface = $gateway["interface"];
     $friendlyname = $gateway["friendlyiface"]; # This is not the friendly interface name so I'm not using it
@@ -159,8 +177,13 @@ foreach ($gw_array as $gw => $gateway) {
         $substatus = "N/A";
     }
 
+    if (isset($gw_dpinger[$name])) {
+        $rtt = $gw_dpinger[$name]['rtt'];
+        $rttsd = $gw_dpinger[$name]['rttsd'];
+    }
+
     printf(
-        "gateways,host=%s,interface=%s,gateway_name=%s monitor=\"%s\",source=\"%s\",defaultgw=%s,gwdescr=\"%s\",delay=%s,stddev=%s,loss=%s,status=\"%s\",status_code=%d,substatus=\"%s\"\n",
+        "gateways,host=%s,interface=%s,gateway_name=%s monitor=\"%s\",source=\"%s\",defaultgw=%s,gwdescr=\"%s\",delay=%s,stddev=%s,loss=%s,status=\"%s\",status_code=%d,substatus=\"%s\",rtt=%s,rttsd=%s\n",
         $host,
         $interface,
         $name, //name is required as it is possible to have 2 gateways on 1 interface.  i.e. WAN_DHCP and WAN_DHCP6
@@ -173,7 +196,9 @@ foreach ($gw_array as $gw => $gateway) {
         floatval($loss),
         $status,
         $status_code,
-        $substatus
+        $substatus,
+        $rtt,
+        $rttsd
     );
 };
 ?>
